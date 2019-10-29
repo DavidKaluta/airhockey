@@ -1,5 +1,6 @@
 package com.davidkaluta.airhockey;
 
+import android.content.res.Resources;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -42,6 +43,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+        int deviceHeight = Resources.getSystem().getDisplayMetrics()
+                .heightPixels;
+
         int action = event.getActionMasked();
 
         switch (action) {
@@ -49,13 +53,13 @@ public class GameActivity extends AppCompatActivity {
                 xDown = event.getX();
                 yDown = event.getY();
                 ht.getRP().setX(xDown);
-                ht.getRP().setY(yDown);
+                ht.getRP().setY(yDown > deviceHeight / 2 ? yDown : deviceHeight/2);
                 return true;
             case MotionEvent.ACTION_MOVE:
                 float xMove = event.getX();
                 float yMove = event.getY();
                 ht.getRP().setX(xMove);
-                ht.getRP().setY(yMove);
+                ht.getRP().setY(yMove > deviceHeight / 2 ? yMove : deviceHeight/2);
                 return true;
             default:
                 return super.onTouchEvent(event);

@@ -20,7 +20,7 @@ public class Puck extends RoundEntity implements Runnable {
         thread = new Thread(this,"PuckThread");
         this.ht = ht;
         dx = 0;
-        dy = 1;
+        dy = 5;
         thread.start();
     }
 
@@ -42,8 +42,8 @@ public class Puck extends RoundEntity implements Runnable {
             RedPaddle rp = ht.getRP();
             Log.d(TAG, "radius+rp.radius="+radius+rp.radius+", distanceFrom(rp)="+distanceFrom(rp));
             if(distanceFrom(rp)<= radius + rp.radius) {
-                //TODO: add collision detection
-                /*float a = (rp.centerPointY - centerPointY) / (rp.centerPointX - centerPointX);
+                //TODO: make collision detection nicer
+                float a = (rp.centerPointY - centerPointY) / (rp.centerPointX - centerPointX);
                 float b = centerPointX - centerPointX*a;
                 float xstart = -b/a;
                 double tan;
@@ -55,16 +55,14 @@ public class Puck extends RoundEntity implements Runnable {
                     tan = (centerPointX-xstart)/centerPointY;
                 }
                 double radian1 = Math.atan(tan);
-                double radian2 = Math.acos(dy/1);
+                double radian2 = Math.acos(dy/5);
                 double angle = radian1 + radian2;
                 double anotherRadian = Math.PI/2 - angle;
-                float dxAdjusted =  (float) Math.cos(anotherRadian);
-                float dyAdjusted = (float) Math.sin(anotherRadian);
+                float dxAdjusted =  5*(float) Math.cos(anotherRadian);
+                float dyAdjusted = 5*(float) Math.sin(anotherRadian);
                 dyAdjusted = -dyAdjusted;
-                dx = dxAdjusted * (float)Math.cos(anotherRadian);
-                dy = dyAdjusted * (float)Math.sin(anotherRadian);*/
-                dx = 0;
-                dy = 0;
+                dx = dxAdjusted * (float)Math.cos(angle);
+                dy = dyAdjusted * (float)Math.sin(anotherRadian);
             }
             x += dx;
             centerPointX += dx;
