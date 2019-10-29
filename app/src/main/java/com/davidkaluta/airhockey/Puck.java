@@ -16,7 +16,9 @@ public class Puck extends RoundEntity implements Runnable {
     private Thread thread;
 
     public Puck(float x, float y, HockeyTable ht) {
-        super(x, y, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(ht.getResources(),R.drawable.puck), 64,64,true));
+        super(x, y, 
+        	Bitmap.createScaledBitmap(
+        	BitmapFactory.decodeResource(ht.getResources(),R.drawable.puck), 64,64,true));
         thread = new Thread(this,"PuckThread");
         this.ht = ht;
         dx = 0;
@@ -40,10 +42,10 @@ public class Puck extends RoundEntity implements Runnable {
             if (y <= 0 || y >= deviceHeight - radius * 2)
                 dy = -dy;
             RedPaddle rp = ht.getRP();
-            Log.d(TAG, "radius+rp.radius="+radius+rp.radius+", distanceFrom(rp)="+distanceFrom(rp));
             if(distanceFrom(rp)<= radius + rp.radius) {
                 //TODO: make collision detection nicer
-                float a = (rp.centerPointY - centerPointY) / (rp.centerPointX - centerPointX);
+                float a = (rp.centerPointY - centerPointY) 
+                / (rp.centerPointX - centerPointX);
                 float b = centerPointX - centerPointX*a;
                 float xstart = -b/a;
                 double tan;

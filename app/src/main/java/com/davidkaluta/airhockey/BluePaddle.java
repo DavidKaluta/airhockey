@@ -6,7 +6,10 @@ import android.graphics.BitmapFactory;
 public class BluePaddle extends RoundEntity implements Runnable {
 
     public BluePaddle(int x, int y, HockeyTable ht) {
-        super(x, y, Bitmap.createScaledBitmap(BitmapFactory.decodeResource(ht.getResources(), R.drawable.blue_paddle), 128,128,true));
+        super(x, y, 
+        	Bitmap.createScaledBitmap(
+        	BitmapFactory.decodeResource(
+        	ht.getResources(), R.drawable.blue_paddle), 128,128,true));
         Thread thread = new Thread(this,  "aiThread");
         thread.start();
     }
