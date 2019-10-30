@@ -8,18 +8,24 @@ public class BluePaddle extends RoundEntity implements Runnable {
 
     Thread thread;
     HockeyTable ht;
+    Goal goal;
 
     double v;
 
-    public BluePaddle(int x, int y, double v, HockeyTable ht) {
+    public BluePaddle(int x, int y, double v, Goal goal, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
         	BitmapFactory.decodeResource(
         	ht.getResources(), R.drawable.blue_paddle), 128,128,true));
         this.v = v;
         this.ht = ht;
+        this.goal = goal;
         thread = new Thread(this,  "aiThread");
         thread.start();
+    }
+
+    public Goal getGoal() {
+        return goal;
     }
 
     public void run() {

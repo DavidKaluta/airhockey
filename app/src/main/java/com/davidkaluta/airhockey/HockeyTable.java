@@ -29,21 +29,21 @@ public class HockeyTable extends View {
                 BitmapFactory.decodeResource(
                         getResources(), R.drawable.black_pixel)
                 , deviceWidth, 20, true);
-        rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8, this);
+        rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,new Goal(deviceWidth/4, 0, this),this);
         p = new Puck(deviceWidth/2, deviceHeight/2, this);
         switch(difficulty) {
             case "Easy":
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,0.5, this);
+                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,0.5,new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "Medium":
             default:
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,1, this);
+                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,1,new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "Hard":
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,2, this);
+                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,2,new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "BRUTAL":
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,123, this);
+                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,123,new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
         }
 
@@ -68,6 +68,8 @@ public class HockeyTable extends View {
         c.drawBitmap(bg, 0, 0, null);
         c.drawBitmap(line, 0,deviceHeight/2 - 10, null);
         rp.draw(c);
+        rp.getGoal().draw(c);
+        bp.getGoal().draw(c);
         bp.draw(c);
         p.draw(c);
         invalidate();

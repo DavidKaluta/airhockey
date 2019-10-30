@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 public class GameActivity extends AppCompatActivity {
 
+    public static final int deviceWidth = Resources.getSystem().getDisplayMetrics()
+            .widthPixels;
     HockeyTable ht;
     float xDown;
     float yDown;
