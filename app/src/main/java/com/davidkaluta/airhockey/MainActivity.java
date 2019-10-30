@@ -29,4 +29,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToCredits(View view) {
+        Intent intent = new Intent(this, CreditsActivity.class);
+        startActivity(intent);
+    }
+
 }

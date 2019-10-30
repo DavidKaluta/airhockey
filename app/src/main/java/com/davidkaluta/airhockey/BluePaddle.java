@@ -37,7 +37,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
             Puck puck = ht.getP();
             if(puck != null) {
                 if (v != 123) {
-                    if (puck.getCenterPointX() > centerPointX && centerPointX + radius < deviceWidth) {
+                    if (puck.getCenterPointX() > centerPointX &&
+                     centerPointX + radius < deviceWidth) {
                         x += v;
                         centerPointX += v;
                     } else if (centerPointX - radius > 0) {
