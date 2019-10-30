@@ -5,7 +5,13 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.View;
+
+import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
+import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
+
 
 public class HockeyTable extends View {
 
@@ -14,9 +20,11 @@ public class HockeyTable extends View {
     Puck p;
     Bitmap bg;
     Bitmap line;
+    Paint paint;
 
     public HockeyTable(Context context, String difficulty) {
         super(context);
+        paint = new Paint();
         int deviceWidth = Resources.getSystem().getDisplayMetrics()
                 .widthPixels;
         int deviceHeight = Resources.getSystem().getDisplayMetrics()
@@ -30,7 +38,6 @@ public class HockeyTable extends View {
                         getResources(), R.drawable.black_pixel)
                 , deviceWidth, 20, true);
         rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,new Goal(deviceWidth/4, 0, this),this);
-        p = new Puck(deviceWidth/2, deviceHeight/2, this);
         switch(difficulty) {
             case "Easy":
                 bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,0.5,new Goal(deviceWidth/4, deviceHeight-10, this), this);
@@ -46,7 +53,7 @@ public class HockeyTable extends View {
                 bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,123,new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
         }
-
+        p = new Puck(deviceWidth/2, deviceHeight/2, this);
     }
 
     public RedPaddle getRP() {
@@ -63,8 +70,6 @@ public class HockeyTable extends View {
 
     protected void onDraw(Canvas c) {
         super.onDraw(c);
-        int deviceHeight = Resources.getSystem().getDisplayMetrics()
-                .heightPixels;
         c.drawBitmap(bg, 0, 0, null);
         c.drawBitmap(line, 0,deviceHeight/2 - 10, null);
         rp.draw(c);
@@ -72,6 +77,16 @@ public class HockeyTable extends View {
         bp.getGoal().draw(c);
         bp.draw(c);
         p.draw(c);
+
+        paint.setTextSize(144);
+        paint.setColor(Color.WHITE);
+        if(rp.isWinner())
+            c.drawText("Red Wins!", 0, deviceHeight / 2 - 100, paint);
+        if(bp.isWinner())
+            c.drawText("Blue Wins!", 0, deviceHeight / 2 - 100, paint);
+        paint.setTextSize(50);
+        c.drawText(Integer.toString(rp.getGoal().getScore()), 10, deviceHeight - 75, paint);
+        c.drawText(Integer.toString(bp.getGoal().getScore()), deviceWidth - 100, deviceHeight - 75, paint);
         invalidate();
     }
 }

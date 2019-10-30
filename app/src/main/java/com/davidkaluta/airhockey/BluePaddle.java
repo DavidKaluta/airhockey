@@ -1,14 +1,16 @@
 package com.davidkaluta.airhockey;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
+
 public class BluePaddle extends RoundEntity implements Runnable {
 
-    Thread thread;
-    HockeyTable ht;
-    Goal goal;
+    private Thread thread;
+    private HockeyTable ht;
+    private Goal goal;
+    private boolean isWinner;
 
     double v;
 
@@ -28,22 +30,24 @@ public class BluePaddle extends RoundEntity implements Runnable {
         return goal;
     }
 
+
+
     public void run() {
         while(true) {
             Puck puck = ht.getP();
-            int deviceWidth = Resources.getSystem().getDisplayMetrics()
-                    .widthPixels;
-            if(v != 123) {
-                if (puck.getCenterPointX() > centerPointX && centerPointX + radius < deviceWidth) {
-                    x += v;
-                    centerPointX += v;
-                } else if (centerPointX - radius > 0) {
-                    x -= v;
-                    centerPointX -= v;
+            if(puck != null) {
+                if (v != 123) {
+                    if (puck.getCenterPointX() > centerPointX && centerPointX + radius < deviceWidth) {
+                        x += v;
+                        centerPointX += v;
+                    } else if (centerPointX - radius > 0) {
+                        x -= v;
+                        centerPointX -= v;
+                    }
+                } else {
+                    centerPointX = puck.centerPointX;
+                    x = centerPointX - radius;
                 }
-            } else {
-                centerPointX = puck.centerPointX;
-                x = centerPointX - radius;
             }
             try {
                 Thread.sleep(2);
@@ -51,6 +55,14 @@ public class BluePaddle extends RoundEntity implements Runnable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean isWinner() {
+        return isWinner;
+    }
+
+    public void setWinner(boolean winner) {
+        isWinner = winner;
     }
 
 }

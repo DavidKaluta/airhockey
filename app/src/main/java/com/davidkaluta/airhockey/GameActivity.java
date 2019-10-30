@@ -13,6 +13,8 @@ public class GameActivity extends AppCompatActivity {
 
     public static final int deviceWidth = Resources.getSystem().getDisplayMetrics()
             .widthPixels;
+    public static final int deviceHeight = Resources.getSystem().getDisplayMetrics()
+            .heightPixels;
     HockeyTable ht;
     float xDown;
     float yDown;
@@ -48,8 +50,6 @@ public class GameActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        int deviceHeight = Resources.getSystem().getDisplayMetrics()
-                .heightPixels;
 
         int action = event.getActionMasked();
 

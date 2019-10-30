@@ -2,6 +2,9 @@
     <string name="app_name">Air Hockey</string>
     <string name="play_button">Play</string>
     <string name="difficulty_textview">Difficulty</string>
+    <string name="red_victory">Red Wins!</string>
+    <string name="blue_victory">Blue Wins!</string>
+
     <string-array name="difficulties">
         <item>Easy</item>
         <item>Medium</item>

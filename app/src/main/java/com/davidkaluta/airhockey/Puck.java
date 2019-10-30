@@ -3,10 +3,9 @@ package com.davidkaluta.airhockey;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.util.Log;
 
-import static android.content.ContentValues.TAG;
+import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
+import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
 public class Puck extends RoundEntity implements Runnable {
 
@@ -28,11 +27,7 @@ public class Puck extends RoundEntity implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
-            int deviceWidth = Resources.getSystem().getDisplayMetrics()
-                    .widthPixels;
-            int deviceHeight = Resources.getSystem().getDisplayMetrics()
-                    .heightPixels;
+        while(!ht.getRP().isWinner() && !ht.getBP().isWinner()) {
             if (x <= 0 || x >= deviceWidth - radius * 2)
                 dx = -dx;
             if(x < 0)
@@ -91,6 +86,31 @@ public class Puck extends RoundEntity implements Runnable {
                     dyAdjusted = -dyAdjusted;
                     dx = dxAdjusted * (float) Math.sin(anotherRadian);
                     dy = -dyAdjusted * (float) Math.cos(angle);
+                }
+            }
+            if(rp.getGoal() != null && bp.getGoal() != null) {
+                if (x + radius * 2 > rp.getGoal().x
+                        && x < rp.getGoal().x + deviceWidth / 2
+                        && y < 10) {
+                    rp.getGoal().incScore();
+                    centerPointX = deviceWidth / 2;
+                    x = centerPointX - radius;
+                    centerPointY = deviceHeight / 2;
+                    y = centerPointY - radius;
+                    if (rp.getGoal().getScore() == 10) {
+                        rp.setWinner(true);
+                    }
+                } else if (x + radius * 2 > bp.getGoal().x
+                        && x < bp.getGoal().x + deviceWidth / 2
+                        && y + radius*2 > deviceHeight - 10) {
+                    bp.getGoal().incScore();
+                    centerPointX = deviceWidth / 2;
+                    x = centerPointX - radius;
+                    centerPointY = deviceHeight / 2;
+                    y = centerPointY - radius;
+                    if (bp.getGoal().getScore() == 10) {
+                        bp.setWinner(true);
+                    }
                 }
             }
             x += dx;
