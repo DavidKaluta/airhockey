@@ -1,21 +1,44 @@
 package com.davidkaluta.airhockey;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class BluePaddle extends RoundEntity implements Runnable {
 
-    public BluePaddle(int x, int y, HockeyTable ht) {
+    Thread thread;
+    HockeyTable ht;
+
+    double v;
+
+    public BluePaddle(int x, int y, double v, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
         	BitmapFactory.decodeResource(
         	ht.getResources(), R.drawable.blue_paddle), 128,128,true));
-        Thread thread = new Thread(this,  "aiThread");
+        this.v = v;
+        this.ht = ht;
+        thread = new Thread(this,  "aiThread");
         thread.start();
     }
 
     public void run() {
         while(true) {
+            Puck puck = ht.getP();
+            int deviceWidth = Resources.getSystem().getDisplayMetrics()
+                    .widthPixels;
+            if(v != 123) {
+                if (puck.getCenterPointX() > centerPointX && centerPointX + radius < deviceWidth) {
+                    x += v;
+                    centerPointX += v;
+                } else if (centerPointX - radius > 0) {
+                    x -= v;
+                    centerPointX -= v;
+                }
+            } else {
+                centerPointX = puck.centerPointX;
+                x = centerPointX - radius;
+            }
             try {
                 Thread.sleep(2);
             } catch(InterruptedException e) {

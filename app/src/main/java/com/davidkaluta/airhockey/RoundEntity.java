@@ -47,7 +47,7 @@ public class RoundEntity extends Entity {
     public float distanceFrom(RoundEntity other) {
         return (float) Math.sqrt(
                 (centerPointX - other.centerPointX)*(centerPointX - other.centerPointX)
-                        + (centerPointY - other.centerPointY)*(centerPointY - other.centerPointY));
+                +(centerPointY - other.centerPointY)*(centerPointY - other.centerPointY));
     }
 
 }

@@ -42,6 +42,7 @@ public class Puck extends RoundEntity implements Runnable {
             if (y <= 0 || y >= deviceHeight - radius * 2)
                 dy = -dy;
             RedPaddle rp = ht.getRP();
+            System.out.println(distanceFrom(rp));
             if(distanceFrom(rp)<= radius + rp.radius) {
                 //TODO: make collision detection nicer
                 float a = (rp.centerPointY - centerPointY) 
@@ -63,8 +64,34 @@ public class Puck extends RoundEntity implements Runnable {
                 float dxAdjusted =  5*(float) Math.cos(anotherRadian);
                 float dyAdjusted = 5*(float) Math.sin(anotherRadian);
                 dyAdjusted = -dyAdjusted;
-                dx = dxAdjusted * (float)Math.cos(angle);
-                dy = dyAdjusted * (float)Math.sin(anotherRadian);
+                dx = dxAdjusted * (float)Math.sin(anotherRadian);
+                dy = dyAdjusted * (float)Math.cos(angle);
+            }
+            BluePaddle bp = ht.getBP();
+            if(bp != null) {
+                if (distanceFrom(bp) <= radius + bp.radius) {
+                    //TODO: make collision detection nicer
+                    float a = (rp.centerPointY - centerPointY)
+                            / (rp.centerPointX - centerPointX);
+                    float b = centerPointX - centerPointX * a;
+                    float xstart = -b / a;
+                    double tan;
+                    if (xstart < 0) {
+                        float ystart = b;
+                        tan = centerPointX / (centerPointY - ystart);
+                    } else {
+                        tan = (centerPointX - xstart) / centerPointY;
+                    }
+                    double radian1 = Math.atan(tan);
+                    double radian2 = Math.acos(dy / 5);
+                    double angle = radian1 + radian2;
+                    double anotherRadian = Math.PI / 2 - angle;
+                    float dxAdjusted = 5 * (float) Math.cos(anotherRadian);
+                    float dyAdjusted = 5 * (float) Math.sin(anotherRadian);
+                    dyAdjusted = -dyAdjusted;
+                    dx = dxAdjusted * (float) Math.sin(anotherRadian);
+                    dy = -dyAdjusted * (float) Math.cos(angle);
+                }
             }
             x += dx;
             centerPointX += dx;

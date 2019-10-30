@@ -1,5 +1,6 @@
 package com.davidkaluta.airhockey;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +18,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ht = new HockeyTable(this);
+        Intent intent = getIntent();
+        String difficulty = intent.getStringExtra("DIFFICULTY");
+        ht = new HockeyTable(this, difficulty);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);

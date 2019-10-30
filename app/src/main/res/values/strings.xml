@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Air Hockey</string>
     <string name="play_button">Play</string>
+    <string name="difficulty_textview">Difficulty</string>
+    <string-array name="difficulties">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+        <item>BRUTAL</item>
+    </string-array>
 </resources>
