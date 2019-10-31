@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, difficulties );
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(spinnerArrayAdapter);
+        final Intent msi = new Intent(this, MusicService.class);
+        startService(msi);
     }
 
     public void goToGame(View view) {
@@ -33,5 +35,27 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CreditsActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        final Intent msi = new Intent(this, MusicService.class);
+        stopService(msi);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        final Intent msi = new Intent(this, MusicService.class);
+        stopService(msi);
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final Intent msi = new Intent(this, MusicService.class);
+        startService(msi);
+    }
+
 
 }
