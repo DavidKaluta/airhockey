@@ -38,26 +38,48 @@ public class HockeyTable extends View {
                         getResources(), R.drawable.black_pixel)
                 , deviceWidth, 20, true);
         rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,
-        new Goal(deviceWidth/4, 0, this),this);
+                new Goal(deviceWidth/4, 0, this),this);
         switch(difficulty) {
             case "Easy":
                 bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,0.5,
-                new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "Medium":
             default:
                 bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,1,
-                new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "Hard":
                 bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,2,
-                new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "BRUTAL":
                 bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,123,
-                new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
         }
+        p = new Puck(deviceWidth/2, deviceHeight/2, this);
+    }
+
+    public HockeyTable(Context context) {
+        super(context);
+        paint = new Paint();
+        int deviceWidth = Resources.getSystem().getDisplayMetrics()
+                .widthPixels;
+        int deviceHeight = Resources.getSystem().getDisplayMetrics()
+                .heightPixels;
+        bg = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(
+                        getResources(), R.drawable.black_pixel)
+                , deviceWidth, deviceHeight, true);
+        line = Bitmap.createScaledBitmap(
+                BitmapFactory.decodeResource(
+                        getResources(), R.drawable.black_pixel)
+                , deviceWidth, 20, true);
+        rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,
+                new Goal(deviceWidth/4, 0, this),this);
+        bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,1,
+                new Goal(deviceWidth/4, deviceHeight-10, this), this);
         p = new Puck(deviceWidth/2, deviceHeight/2, this);
     }
 

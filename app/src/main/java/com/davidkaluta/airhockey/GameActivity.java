@@ -11,9 +11,9 @@ import android.os.Bundle;
 
 public class GameActivity extends AppCompatActivity {
 
-    public static final int deviceWidth = Resources.getSystem()
+    public static final float deviceWidth = Resources.getSystem()
     	.getDisplayMetrics().widthPixels;
-    public static final int deviceHeight = Resources.getSystem()
+    public static final float deviceHeight = Resources.getSystem()
     	.getDisplayMetrics().heightPixels;
     HockeyTable ht;
     float xDown;

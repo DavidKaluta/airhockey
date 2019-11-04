@@ -12,14 +12,13 @@ public class Puck extends RoundEntity implements Runnable {
     private float dx;
     private float dy;
     private HockeyTable ht;
-    private Thread thread;
 
-    public Puck(float x, float y, HockeyTable ht) {
+    Puck(float x, float y, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
         	BitmapFactory.decodeResource(ht.getResources(),R.drawable.puck),
         	 64,64,true));
-        thread = new Thread(this,"PuckThread");
+        Thread thread = new Thread(this,"PuckThread");
         this.ht = ht;
         dx = 0;
         dy = 5;
@@ -47,8 +46,7 @@ public class Puck extends RoundEntity implements Runnable {
                 float xstart = -b/a;
                 double tan;
                 if(xstart < 0) {
-                    float ystart = b;
-                    tan = centerPointX/(centerPointY-ystart);
+                    tan = centerPointX/(centerPointY-b);
                 }
                 else {
                     tan = (centerPointX-xstart)/centerPointY;
@@ -73,8 +71,7 @@ public class Puck extends RoundEntity implements Runnable {
                     float xstart = -b / a;
                     double tan;
                     if (xstart < 0) {
-                        float ystart = b;
-                        tan = centerPointX / (centerPointY - ystart);
+                        tan = centerPointX / (centerPointY - b);
                     } else {
                         tan = (centerPointX - xstart) / centerPointY;
                     }
@@ -89,30 +86,32 @@ public class Puck extends RoundEntity implements Runnable {
                     dy = -dyAdjusted * (float) Math.cos(angle);
                 }
             }
-            if(rp.getGoal() != null && bp.getGoal() != null) {
-                if (x + radius * 2 > rp.getGoal().x
-                        && x < rp.getGoal().x + deviceWidth / 2
-                        && y < 10) {
-                    rp.getGoal().incScore();
-                    centerPointX = deviceWidth / 2;
-                    x = centerPointX - radius;
-                    centerPointY = deviceHeight / 2;
-                    y = centerPointY - radius;
-                    if (rp.getGoal().getScore() == 10) {
-                        rp.setWinner(true);
-                        Saver.setWins(ht.getContext(),Saver.getWins(
-                        ht.getContext()) + 1);
-                    }
-                } else if (x + radius * 2 > bp.getGoal().x
-                        && x < bp.getGoal().x + deviceWidth / 2
-                        && y + radius*2 > deviceHeight - 10) {
-                    bp.getGoal().incScore();
-                    centerPointX = deviceWidth / 2;
-                    x = centerPointX - radius;
-                    centerPointY = deviceHeight / 2;
-                    y = centerPointY - radius;
-                    if (bp.getGoal().getScore() == 10) {
-                        bp.setWinner(true);
+            if(bp != null) {
+                if (rp.getGoal() != null && bp.getGoal() != null) {
+                    if (x + radius * 2 > rp.getGoal().x
+                            && x < rp.getGoal().x + deviceWidth / 2
+                            && y < 10) {
+                        rp.getGoal().incScore();
+                        centerPointX = deviceWidth / 2;
+                        x = centerPointX - radius;
+                        centerPointY = deviceHeight / 2;
+                        y = centerPointY - radius;
+                        if (rp.getGoal().getScore() == 10) {
+                            rp.win();
+                            Saver.setWins(ht.getContext(), Saver.getWins(
+                                    ht.getContext()) + 1);
+                        }
+                    } else if (x + radius * 2 > bp.getGoal().x
+                            && x < bp.getGoal().x + deviceWidth / 2
+                            && y + radius * 2 > deviceHeight - 10) {
+                        bp.getGoal().incScore();
+                        centerPointX = deviceWidth / 2;
+                        x = centerPointX - radius;
+                        centerPointY = deviceHeight / 2;
+                        y = centerPointY - radius;
+                        if (bp.getGoal().getScore() == 10) {
+                            bp.win();
+                        }
                     }
                 }
             }
@@ -122,7 +121,8 @@ public class Puck extends RoundEntity implements Runnable {
             centerPointY += dy;
             try {
                 Thread.sleep(2);
-            } catch (InterruptedException e) {
+            } 
+            catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

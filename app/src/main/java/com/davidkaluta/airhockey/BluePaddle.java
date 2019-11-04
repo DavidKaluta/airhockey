@@ -7,14 +7,13 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
 public class BluePaddle extends RoundEntity implements Runnable {
 
-    private Thread thread;
     private HockeyTable ht;
     private Goal goal;
     private boolean isWinner;
 
-    double v;
+    private double v;
 
-    public BluePaddle(int x, int y, double v, Goal goal, HockeyTable ht) {
+    BluePaddle(int x, int y, double v, Goal goal, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
         	BitmapFactory.decodeResource(
@@ -22,11 +21,12 @@ public class BluePaddle extends RoundEntity implements Runnable {
         this.v = v;
         this.ht = ht;
         this.goal = goal;
-        thread = new Thread(this,  "aiThread");
+        isWinner = false;
+        Thread thread = new Thread(this,  "aiThread");
         thread.start();
     }
 
-    public Goal getGoal() {
+    Goal getGoal() {
         return goal;
     }
 
@@ -41,29 +41,32 @@ public class BluePaddle extends RoundEntity implements Runnable {
                      centerPointX + radius < deviceWidth) {
                         x += v;
                         centerPointX += v;
-                    } else if (centerPointX - radius > 0) {
+                    } 
+                    else if (centerPointX - radius > 0) {
                         x -= v;
                         centerPointX -= v;
                     }
-                } else {
+                } 
+                else {
                     centerPointX = puck.centerPointX;
                     x = centerPointX - radius;
                 }
             }
             try {
                 Thread.sleep(2);
-            } catch(InterruptedException e) {
+            } 
+            catch(InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public boolean isWinner() {
+    boolean isWinner() {
         return isWinner;
     }
 
-    public void setWinner(boolean winner) {
-        isWinner = winner;
+    void win() {
+        isWinner = true;
     }
 
 }
