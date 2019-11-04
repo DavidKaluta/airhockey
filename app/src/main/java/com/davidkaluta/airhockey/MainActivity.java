@@ -16,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String[] difficulties = getResources().getStringArray(R.array.difficulties);
+        String[] difficulties = getResources()
+        	.getStringArray(R.array.difficulties);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, difficulties );
         spinner = (Spinner) findViewById(R.id.spinner);

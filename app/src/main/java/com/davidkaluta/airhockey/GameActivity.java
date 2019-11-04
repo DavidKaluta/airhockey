@@ -11,10 +11,10 @@ import android.os.Bundle;
 
 public class GameActivity extends AppCompatActivity {
 
-    public static final int deviceWidth = Resources.getSystem().getDisplayMetrics()
-            .widthPixels;
-    public static final int deviceHeight = Resources.getSystem().getDisplayMetrics()
-            .heightPixels;
+    public static final int deviceWidth = Resources.getSystem()
+    	.getDisplayMetrics().widthPixels;
+    public static final int deviceHeight = Resources.getSystem()
+    	.getDisplayMetrics().heightPixels;
     HockeyTable ht;
     float xDown;
     float yDown;
@@ -58,13 +58,15 @@ public class GameActivity extends AppCompatActivity {
                 xDown = event.getX();
                 yDown = event.getY();
                 ht.getRP().setX(xDown);
-                ht.getRP().setY(yDown > deviceHeight / 2 ? yDown : deviceHeight/2);
+                ht.getRP().setY(yDown > deviceHeight / 2 ?
+                 yDown : deviceHeight/2);
                 return true;
             case MotionEvent.ACTION_MOVE:
                 float xMove = event.getX();
                 float yMove = event.getY();
                 ht.getRP().setX(xMove);
-                ht.getRP().setY(yMove > deviceHeight / 2 ? yMove : deviceHeight/2);
+                ht.getRP().setY(yMove > deviceHeight / 2 ?
+                 yMove : deviceHeight/2);
                 return true;
             default:
                 return super.onTouchEvent(event);

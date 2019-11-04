@@ -17,7 +17,8 @@ public class Puck extends RoundEntity implements Runnable {
     public Puck(float x, float y, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
-        	BitmapFactory.decodeResource(ht.getResources(),R.drawable.puck), 64,64,true));
+        	BitmapFactory.decodeResource(ht.getResources(),R.drawable.puck),
+        	 64,64,true));
         thread = new Thread(this,"PuckThread");
         this.ht = ht;
         dx = 0;
@@ -99,7 +100,8 @@ public class Puck extends RoundEntity implements Runnable {
                     y = centerPointY - radius;
                     if (rp.getGoal().getScore() == 10) {
                         rp.setWinner(true);
-                        Saver.setWins(ht.getContext(),Saver.getWins(ht.getContext()) + 1);
+                        Saver.setWins(ht.getContext(),Saver.getWins(
+                        ht.getContext()) + 1);
                     }
                 } else if (x + radius * 2 > bp.getGoal().x
                         && x < bp.getGoal().x + deviceWidth / 2
