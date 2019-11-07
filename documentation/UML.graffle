@@ -6481,7 +6481,7 @@
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1677, 1566}}</string>
+				<string>{{0, 0}, {1118, 1566}}</string>
 				<key>Class</key>
 				<string>GraffleShapes.CanvasBackgroundGraphic</string>
 				<key>ID</key>
@@ -8590,25 +8590,25 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{148.34348268215552, 945.88320887974464}</string>
+								<string>{148.34348268215541, 945.88320887974533}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{148.34348268215552, 964.38320887974464}</string>
+								<string>{148.34348268215541, 964.38320887974533}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{106.59940714223637, 964.38320887974464}</string>
+								<string>{106.59940714223643, 964.38320887974533}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{106.59940714223637, 983.3064455206337}</string>
+								<string>{106.59940714223643, 983.30644552063359}</string>
 							</dict>
 						</array>
 					</dict>
@@ -8620,8 +8620,8 @@
 					<real>-1</real>
 					<key>Points</key>
 					<array>
-						<string>{148.34348268215552, 945.88320887974464}</string>
-						<string>{106.59940714223637, 983.3064455206337}</string>
+						<string>{148.34348268215541, 945.88320887974533}</string>
+						<string>{106.59940714223643, 983.30644552063359}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8681,13 +8681,13 @@
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{205.79133660912217, 764.11352753750555}</string>
+								<string>{205.79133660912208, 764.11352753750555}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{205.79133660912217, 783.34384619526611}</string>
+								<string>{205.79133660912208, 783.34384619526577}</string>
 							</dict>
 						</array>
 					</dict>
@@ -8700,7 +8700,7 @@
 					<key>Points</key>
 					<array>
 						<string>{190.79133204357825, 745.61352753750555}</string>
-						<string>{205.79133660912217, 783.34384619526611}</string>
+						<string>{205.79133660912208, 783.34384619526577}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8748,25 +8748,25 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{313.79133204357828, 613.11352753750543}</string>
+								<string>{313.79133204357828, 613.11352753750555}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{313.79133204357828, 698.61352753750543}</string>
+								<string>{313.79133204357828, 698.61352753750555}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{263.23917455668521, 698.61352753750543}</string>
+								<string>{263.23917455668516, 698.61352753750555}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{263.23917455668521, 783.34384619526611}</string>
+								<string>{263.23917455668516, 783.34384619526577}</string>
 							</dict>
 						</array>
 					</dict>
@@ -8778,8 +8778,8 @@
 					<real>-1</real>
 					<key>Points</key>
 					<array>
-						<string>{313.79133204357828, 613.11352753750543}</string>
-						<string>{263.23917455668521, 783.34384619526611}</string>
+						<string>{313.79133204357828, 613.11352753750555}</string>
+						<string>{263.23917455668516, 783.34384619526577}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8839,13 +8839,13 @@
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{73.791334650929542, 638.61352753750543}</string>
+								<string>{73.791334650929556, 638.61352753750543}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{73.791334650929542, 983.3064455206337}</string>
+								<string>{73.791334650929556, 983.30644552063359}</string>
 							</dict>
 						</array>
 					</dict>
@@ -8858,7 +8858,7 @@
 					<key>Points</key>
 					<array>
 						<string>{116.79133204357822, 293.11352753750543}</string>
-						<string>{73.791334650929542, 983.3064455206337}</string>
+						<string>{73.791334650929556, 983.30644552063359}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8906,7 +8906,7 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{306.79133204357828, 121.61352753750543}</string>
+								<string>{306.79133204357828, 121.61352753750542}</string>
 							</dict>
 							<dict>
 								<key>element</key>
@@ -8918,13 +8918,13 @@
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{205.79133660912217, 452.11352753750543}</string>
+								<string>{205.79133660912208, 452.11352753750543}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{205.79133660912217, 783.34384619526611}</string>
+								<string>{205.79133660912208, 783.34384619526577}</string>
 							</dict>
 						</array>
 					</dict>
@@ -8936,8 +8936,8 @@
 					<real>-1</real>
 					<key>Points</key>
 					<array>
-						<string>{306.79133204357828, 121.61352753750543}</string>
-						<string>{205.79133660912217, 783.34384619526611}</string>
+						<string>{306.79133204357828, 121.61352753750542}</string>
+						<string>{205.79133660912208, 783.34384619526577}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -8985,20 +8985,20 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{813.17518966831551, 328.44817323251596}</string>
+								<string>{813.17519280569445, 328.4481732325159}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{813.17519280569434, 388.11352753750543}</string>
+								<string>{813.17519280569445, 388.11352753750543}</string>
 							</dict>
 						</array>
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{813.17518966831551, 328.44817323251596}</string>
-						<string>{813.17519280569434, 388.11352753750543}</string>
+						<string>{813.17519280569445, 328.4481732325159}</string>
+						<string>{813.17519280569445, 388.11352753750543}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -9037,6 +9037,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9159,6 +9166,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9281,6 +9295,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9351,7 +9372,7 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{501.5442667144012, 312.61352753750543}</string>
+								<string>{501.54426671440115, 312.61352753750526}</string>
 							</dict>
 							<dict>
 								<key>element</key>
@@ -9363,7 +9384,7 @@
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{501.5442667144012, 312.61352753750543}</string>
+						<string>{501.54426671440115, 312.61352753750526}</string>
 						<string>{303.23424757695568, 405.61352753750543}</string>
 					</array>
 					<key>Style</key>
@@ -9403,6 +9424,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9532,6 +9560,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9614,7 +9649,7 @@
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{268.73325178219562, 121.61352753750543}</string>
+								<string>{268.73325178219557, 121.61352753750545}</string>
 							</dict>
 						</array>
 					</dict>
@@ -9622,7 +9657,7 @@
 					<array>
 						<string>{234.79133476325552, 381.61352753750543}</string>
 						<string>{228.4951896683155, 159.02152753750534}</string>
-						<string>{268.73325178219562, 121.61352753750543}</string>
+						<string>{268.73325178219557, 121.61352753750545}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -9661,6 +9696,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9790,6 +9832,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9860,7 +9909,7 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{306.79133204357828, 121.61352753750543}</string>
+								<string>{306.79133204357828, 121.61352753750542}</string>
 							</dict>
 							<dict>
 								<key>element</key>
@@ -9872,7 +9921,7 @@
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{306.79133204357828, 121.61352753750543}</string>
+						<string>{306.79133204357828, 121.61352753750542}</string>
 						<string>{234.79133476325552, 381.61352753750543}</string>
 					</array>
 					<key>Style</key>
@@ -9912,6 +9961,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -9982,7 +10038,7 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{268.73325178219562, 121.61352753750543}</string>
+								<string>{268.73325178219557, 121.61352753750545}</string>
 							</dict>
 							<dict>
 								<key>element</key>
@@ -9994,7 +10050,7 @@
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{268.73325178219562, 121.61352753750543}</string>
+						<string>{268.73325178219557, 121.61352753750545}</string>
 						<string>{166.29133204357817, 230.86352753750543}</string>
 					</array>
 					<key>Style</key>
@@ -10034,6 +10090,13 @@
 					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
+						<key>Color</key>
+						<dict>
+							<key>space</key>
+							<string>gg22</string>
+							<key>w</key>
+							<string>0</string>
+						</dict>
 						<key>Font</key>
 						<string>Helvetica</string>
 						<key>Size</key>
@@ -10104,20 +10167,20 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{813.17518966831562, 108.61352753750543}</string>
+								<string>{813.17518966831562, 108.61352753750548}</string>
 							</dict>
 							<dict>
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{813.17519307563634, 174.77888184249494}</string>
+								<string>{813.17519307563634, 174.77888184249505}</string>
 							</dict>
 						</array>
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{813.17518966831562, 108.61352753750543}</string>
-						<string>{813.17519307563634, 174.77888184249494}</string>
+						<string>{813.17518966831562, 108.61352753750548}</string>
+						<string>{813.17519307563634, 174.77888184249505}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -10171,14 +10234,14 @@
 								<key>element</key>
 								<string>LINETO</string>
 								<key>point</key>
-								<string>{640.03838911786374, 190.61352753750543}</string>
+								<string>{640.03838911786386, 190.61352753750543}</string>
 							</dict>
 						</array>
 					</dict>
 					<key>Points</key>
 					<array>
 						<string>{777.03837183899338, 108.61352753750545}</string>
-						<string>{640.03838911786374, 190.61352753750543}</string>
+						<string>{640.03838911786386, 190.61352753750543}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -10599,7 +10662,7 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{501.5442667144012, 312.61352753750543}</string>
+								<string>{501.54426671440103, 312.61352753750532}</string>
 							</dict>
 							<dict>
 								<key>element</key>
@@ -10611,7 +10674,7 @@
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{501.5442667144012, 312.61352753750543}</string>
+						<string>{501.54426671440103, 312.61352753750532}</string>
 						<string>{223.59940714223646, 649.61352753750543}</string>
 					</array>
 					<key>Style</key>
@@ -10843,7 +10906,7 @@
 								<key>element</key>
 								<string>MOVETO</string>
 								<key>point</key>
-								<string>{306.79133204357828, 121.61352753750543}</string>
+								<string>{306.79133204357828, 121.61352753750542}</string>
 							</dict>
 							<dict>
 								<key>element</key>
@@ -10861,7 +10924,7 @@
 					</dict>
 					<key>Points</key>
 					<array>
-						<string>{306.79133204357828, 121.61352753750543}</string>
+						<string>{306.79133204357828, 121.61352753750542}</string>
 						<string>{308.47998966831551, 298.19752753750538}</string>
 						<string>{313.79133401053161, 530.11352753750543}</string>
 					</array>
@@ -10897,7 +10960,7 @@
 			<key>GridInfo</key>
 			<dict/>
 			<key>HPages</key>
-			<integer>3</integer>
+			<integer>2</integer>
 			<key>KeepToScale</key>
 			<false/>
 			<key>Layers</key>
@@ -10975,7 +11038,7 @@
 		<key>Sidebar_Tab</key>
 		<integer>0</integer>
 		<key>VisibleRegion</key>
-		<string>{{-547.49999999999955, 7.5000000000001279}, {2298.3333333333335, 1316.6666666666667}}</string>
+		<string>{{-873.4693877551025, -156.12244897959209}, {2814.2857142857142, 1612.2448979591836}}</string>
 		<key>WindowInfo_InspectorTab</key>
 		<array>
 			<string>com.omnigroup.OmniGraffle.inspectorGroup.canvas</string>
@@ -10984,7 +11047,7 @@
 		<array>
 			<array>
 				<string>Canvas 1</string>
-				<real>0.59999999999999998</real>
+				<real>0.49000000000000005</real>
 				<real>1</real>
 			</array>
 		</array>
@@ -10994,14 +11057,14 @@
 	<key>copyLinkedImagesKey</key>
 	<false/>
 	<key>createSinglePDFKey</key>
-	<true/>
+	<integer>1</integer>
 	<key>exportAreaKey</key>
 	<integer>1</integer>
 	<key>exportQualityKey</key>
 	<real>100</real>
 	<key>exportSizesKey</key>
 	<array>
-		<integer>1</integer>
+		<real>1</real>
 		<string></string>
 	</array>
 	<key>fileFormatKey</key>
