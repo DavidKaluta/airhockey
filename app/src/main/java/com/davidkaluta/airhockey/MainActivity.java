@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    @Override
+    /*@Override
     protected void onStop() {
         final Intent msi = new Intent(this, MusicService.class);
         stopService(msi);
@@ -57,6 +57,6 @@ public class MainActivity extends AppCompatActivity {
         final Intent msi = new Intent(this, MusicService.class);
         startService(msi);
     }
-
+*/
 
 }
