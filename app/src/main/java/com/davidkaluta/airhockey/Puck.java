@@ -57,9 +57,13 @@ public class Puck extends RoundEntity implements Runnable {
                 double anotherRadian = Math.PI/2 - angle;
                 float dxAdjusted =  5*(float) Math.cos(anotherRadian);
                 float dyAdjusted = 5*(float) Math.sin(anotherRadian);
-                dyAdjusted = -dyAdjusted;
                 dx = dxAdjusted * (float)Math.sin(anotherRadian);
-                dy = dyAdjusted * (float)Math.cos(angle);
+                if(centerPointY > rp.centerPointY)
+                    dy = dyAdjusted * (float)Math.cos(angle);
+                else if(centerPointY < rp.centerPointY)
+                    dy = -dyAdjusted * (float)Math.cos(angle);
+                else
+                    dy = 0;
             }
             BluePaddle bp = ht.getBP();
             if(bp != null) {
@@ -81,9 +85,14 @@ public class Puck extends RoundEntity implements Runnable {
                     double anotherRadian = Math.PI / 2 - angle;
                     float dxAdjusted = 5 * (float) Math.cos(anotherRadian);
                     float dyAdjusted = 5 * (float) Math.sin(anotherRadian);
-                    dyAdjusted = -dyAdjusted;
                     dx = dxAdjusted * (float) Math.sin(anotherRadian);
-                    dy = -dyAdjusted * (float) Math.cos(angle);
+                    //dy = dyAdjusted * (float) Math.cos(angle);
+                    if(centerPointY <  rp.centerPointY)
+                        dy = -dyAdjusted * (float)Math.cos(angle);
+                    else if(centerPointY > rp.centerPointY)
+                        dy = dyAdjusted * (float)Math.cos(angle);
+                    else
+                        dy = 0;
                 }
             }
             if(bp != null) {
