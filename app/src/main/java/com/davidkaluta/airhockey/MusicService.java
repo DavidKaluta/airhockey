@@ -9,6 +9,12 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.IBinder;
 
+/**
+ * A service to play the game's music
+ * @author  Leonid Shafran (modified by David Kaluta)
+ * @version 18
+ * @since   8
+ */
 public class MusicService extends Service {
 
     @SuppressWarnings("unused")
@@ -130,6 +136,12 @@ public class MusicService extends Service {
         }
     }
 
+    /**
+     * A BroadcastReceiver for volume control
+     * @author  Leonid Shafran
+     * @version 18
+     * @since   8
+     */
     public class HeadsetIntentReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {

@@ -8,21 +8,55 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
+import androidx.annotation.NonNull;
 
 import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
 import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
-
+/**
+ * The View for the game
+ * @author  David Kaluta
+ * @version 18
+ * @since   1
+ */
 public class HockeyTable extends View {
 
+    /**
+     * A red paddle (PC)
+     */
     RedPaddle rp;
+
+    /**
+     * A blue paddle (NPC)
+     */
     BluePaddle bp;
+
+    /**
+     * A puck
+     */
     Puck p;
+
+    /**
+     * The game background
+     */
     Bitmap bg;
+
+    /**
+     * A separator line
+     */
     Bitmap line;
+
+    /**
+     * A Paint to draw text with
+     */
     Paint paint;
 
-    public HockeyTable(Context context, String difficulty) {
+    /**
+     * Create a HockeyTable with a difficulty
+     * @param context       required for a View
+     * @param difficulty    The difficulty level
+     */
+    public HockeyTable(Context context, @NonNull String difficulty) {
         super(context);
         paint = new Paint();
         int deviceWidth = Resources.getSystem().getDisplayMetrics()
@@ -41,26 +75,30 @@ public class HockeyTable extends View {
                 new Goal(deviceWidth/4, 0, this),this);
         switch(difficulty) {
             case "Easy":
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,0.5,
+                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,0.5,
                         new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "Medium":
             default:
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,1,
+                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,1,
                         new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "Hard":
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,2,
+                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,2,
                         new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
             case "BRUTAL":
-                bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,123,
+                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,123,
                         new Goal(deviceWidth/4, deviceHeight-10, this), this);
                 break;
         }
         p = new Puck(deviceWidth/2, deviceHeight/2, this);
     }
 
+    /**
+     * Create a HockeyTable without a difficulty (will be Medium)
+     * @param context   required for a View
+     */
     public HockeyTable(Context context) {
         super(context);
         paint = new Paint();
@@ -78,23 +116,39 @@ public class HockeyTable extends View {
                 , deviceWidth, 20, true);
         rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,
                 new Goal(deviceWidth/4, 0, this),this);
-        bp = new BluePaddle(deviceWidth/2, 1 * deviceHeight/8,1,
+        bp = new BluePaddle(deviceWidth/2, deviceHeight/8,1,
                 new Goal(deviceWidth/4, deviceHeight-10, this), this);
         p = new Puck(deviceWidth/2, deviceHeight/2, this);
     }
 
+    /**
+     * Get the red paddle
+     * @return  the red paddle
+     */
     public RedPaddle getRP() {
         return rp;
     }
 
+    /**
+     * Get the puck
+     * @return  the puck
+     */
     public Puck getP() {
         return p;
     }
 
+    /**
+     * Get the blue paddle
+     * @return  the blue paddle
+     */
     public BluePaddle getBP() {
         return bp;
     }
 
+    /**
+     * Draw everything
+     * @param c required for onDraw
+     */
     protected void onDraw(Canvas c) {
         super.onDraw(c);
         c.drawBitmap(bg, 0, 0, null);
@@ -104,7 +158,6 @@ public class HockeyTable extends View {
         bp.getGoal().draw(c);
         bp.draw(c);
         p.draw(c);
-
         paint.setTextSize(144);
         paint.setColor(Color.WHITE);
         if(rp.isWinner())

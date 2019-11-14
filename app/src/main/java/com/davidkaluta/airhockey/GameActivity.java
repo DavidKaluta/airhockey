@@ -9,22 +9,54 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * The activity the game runs in
+ * @author  David Kaluta
+ * @version 18
+ * @since   1
+ */
 public class GameActivity extends AppCompatActivity {
 
+    /**
+     * The width of the device
+     */
     public static final float deviceWidth = Resources.getSystem()
     	.getDisplayMetrics().widthPixels;
+
+    /**
+     * The height of the device
+     */
     public static final float deviceHeight = Resources.getSystem()
     	.getDisplayMetrics().heightPixels;
+
+    /**
+     * A HockeyTable for the game
+     */
     HockeyTable ht;
+
+    /**
+     * X-coordinate for touch location
+     */
     float xDown;
+
+    /**
+     * Y-coordinate for touch location
+     */
     float yDown;
 
+    /**
+     * Prepare for opening game
+     * @param savedInstanceState required for onCreate
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String difficulty = intent.getStringExtra("DIFFICULTY");
-        ht = new HockeyTable(this, difficulty);
+        if(difficulty != null)
+            ht = new HockeyTable(this, difficulty);
+        else
+            ht = new HockeyTable(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -33,6 +65,10 @@ public class GameActivity extends AppCompatActivity {
         setContentView(ht);
     }
 
+    /**
+     * Make the app full screen
+     * @param hasFocus is the app in focus
+     */
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -47,6 +83,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Check if the screen is touched
+     * @param event a MotionEvent with a touch action
+     * @return      true if the screen has been touched
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 

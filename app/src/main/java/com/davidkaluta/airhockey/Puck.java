@@ -7,12 +7,35 @@ import android.graphics.BitmapFactory;
 import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
 import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
+/**
+ * The puck
+ * @author  David Kaluta
+ * @version 18
+ * @since   1
+ */
 public class Puck extends RoundEntity implements Runnable {
 
+    /**
+     * The puck's velocity on the X-axis
+     */
     private float dx;
+
+    /**
+     * The puck's velocity on the Y-axis
+     */
     private float dy;
+
+    /**
+     * A HockeyTable to get the Paddles
+     */
     private HockeyTable ht;
 
+    /**
+     * Create a Puck
+     * @param x     X-position for the puck
+     * @param y     Y-position for the puck
+     * @param ht    The HockeyTable
+     */
     Puck(float x, float y, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
@@ -25,6 +48,9 @@ public class Puck extends RoundEntity implements Runnable {
         thread.start();
     }
 
+    /**
+     * The main loop for the puck's movement
+     */
     @Override
     public void run() {
         while(!ht.getRP().isWinner() && !ht.getBP().isWinner()) {
@@ -39,17 +65,16 @@ public class Puck extends RoundEntity implements Runnable {
             RedPaddle rp = ht.getRP();
             System.out.println(distanceFrom(rp));
             if(distanceFrom(rp)<= radius + rp.radius) {
-                //TODO: make collision detection nicer
-                float a = (rp.centerPointY - centerPointY) 
+                float a = (rp.centerPointY - centerPointY)
                 / (rp.centerPointX - centerPointX);
                 float b = centerPointX - centerPointX*a;
-                float xstart = -b/a;
+                float xStart = -b/a;
                 double tan;
-                if(xstart < 0) {
+                if(xStart < 0) {
                     tan = centerPointX/(centerPointY-b);
                 }
                 else {
-                    tan = (centerPointX-xstart)/centerPointY;
+                    tan = (centerPointX-xStart)/centerPointY;
                 }
                 double radian1 = Math.atan(tan);
                 double radian2 = Math.acos(dy/5);
@@ -68,31 +93,38 @@ public class Puck extends RoundEntity implements Runnable {
             BluePaddle bp = ht.getBP();
             if(bp != null) {
                 if (distanceFrom(bp) <= radius + bp.radius) {
-                    //TODO: make collision detection nicer
-                    float a = (rp.centerPointY - centerPointY)
-                            / (rp.centerPointX - centerPointX);
-                    float b = centerPointX - centerPointX * a;
-                    float xstart = -b / a;
-                    double tan;
-                    if (xstart < 0) {
-                        tan = centerPointX / (centerPointY - b);
-                    } else {
-                        tan = (centerPointX - xstart) / centerPointY;
+                    float a;
+                    float b;
+                    float xStart;
+                    if(bp.centerPointX - centerPointX != 0) {
+                        a = (bp.centerPointY - centerPointY)
+                                / (bp.centerPointX - centerPointX);
+                        b = centerPointX - centerPointX * a;
+                        xStart = -b/a;
+                        double tan;
+                        if (xStart < 0) {
+                            tan = centerPointX / (centerPointY - b);
+                        } else {
+                            tan = (centerPointX - xStart) / centerPointY;
+                        }
+                        double radian1 = Math.atan(tan);
+                        double radian2 = Math.acos(dy / 5);
+                        double angle = radian1 + radian2;
+                        double anotherRadian = Math.PI / 2 - angle;
+                        float dxAdjusted = 5 * (float) Math.cos(anotherRadian);
+                        float dyAdjusted = 5 * (float) Math.sin(anotherRadian);
+                        dx = dxAdjusted * (float) Math.sin(anotherRadian);
+                        if(centerPointY <  bp.centerPointY)
+                            dy = -dyAdjusted * (float)Math.cos(angle);
+                        else if(centerPointY > bp.centerPointY)
+                            dy = dyAdjusted * (float)Math.cos(angle);
+                        else
+                            dy = 0;
                     }
-                    double radian1 = Math.atan(tan);
-                    double radian2 = Math.acos(dy / 5);
-                    double angle = radian1 + radian2;
-                    double anotherRadian = Math.PI / 2 - angle;
-                    float dxAdjusted = 5 * (float) Math.cos(anotherRadian);
-                    float dyAdjusted = 5 * (float) Math.sin(anotherRadian);
-                    dx = dxAdjusted * (float) Math.sin(anotherRadian);
-                    //dy = dyAdjusted * (float) Math.cos(angle);
-                    if(centerPointY <  rp.centerPointY)
-                        dy = -dyAdjusted * (float)Math.cos(angle);
-                    else if(centerPointY > rp.centerPointY)
-                        dy = dyAdjusted * (float)Math.cos(angle);
-                    else
-                        dy = 0;
+                    else {
+                        dy = -dy;
+                    }
+
                 }
             }
             if(bp != null) {

@@ -3,37 +3,78 @@ package com.davidkaluta.airhockey;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-public class Entity {
+/**
+ * The parent class for all entities on the Game Board
+ * @author  David Kaluta
+ * @version 18
+ * @since   1
+ */
+public abstract class Entity {
 
-    protected float x;
+    /**
+     * The entity's x-coordinate
+     */
+    float x;
 
-    protected float y;
+    /**
+     * The entity's y-coordinate
+     */
+    float y;
 
-    protected Bitmap bmp;
+    /**
+     * The entity's bitmap
+     */
+    private Bitmap bmp;
 
-    public Entity(float x, float y, Bitmap bmp) {
+    /**
+     * Create a new entity
+     * @param x     X-coordinate
+     * @param y     Y-coordinate
+     * @param bmp   Bitmap
+     */
+    Entity(float x, float y, Bitmap bmp) {
         this.x = x;
         this.y = y;
         this.bmp = bmp;
     }
 
+    /**
+     * Get the entity's x-coordinate
+     * @return the entity's x-coordinate
+     */
     public float getX() {
         return x;
     }
 
+    /**
+     * Set the entity's x-coordinate
+     * @param x the new x-coordinate
+     */
     public void setX(float x) {
         this.x = x;
     }
 
+    /**
+     * Get the entity's y-coordinate
+     * @return the entity's y-coordinate
+     */
     public float getY() {
         return y;
     }
 
+    /**
+     * Set the entity's y-coordinate
+     * @param y the new y-coordinate
+     */
     public void setY(float y) {
         this.y = y;
     }
 
-    public void draw(Canvas c) {
+    /**
+     * Draw the entity
+     * @param c a canvas to draw the entity on
+     */
+    void draw(Canvas c) {
         c.drawBitmap(bmp, x, y, null);
     }
 }

@@ -5,14 +5,42 @@ import android.graphics.BitmapFactory;
 
 import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
+/**
+ * An AI-controlled blue paddle
+ * @author  David Kaluta
+ * @version 18
+ * @since   2
+ */
 public class BluePaddle extends RoundEntity implements Runnable {
 
+    /**
+     * The HockeyTable to track the puck on
+     */
     private HockeyTable ht;
+
+    /**
+     * The paddle's goal
+     */
     private Goal goal;
+
+    /**
+     * The NPC's player condition
+     */
     private boolean isWinner;
 
+    /**
+     * The paddle's velocity (controlled by difficulty)
+     */
     private double v;
 
+    /**
+     * Create a new blue paddle
+     * @param x     The paddle's x-coordinate
+     * @param y     The paddle's y-coordinate
+     * @param v     The paddle's velocity
+     * @param goal  The paddle's goal
+     * @param ht    The HockeyTable
+     */
     BluePaddle(int x, int y, double v, Goal goal, HockeyTable ht) {
         super(x, y, 
         	Bitmap.createScaledBitmap(
@@ -26,12 +54,19 @@ public class BluePaddle extends RoundEntity implements Runnable {
         thread.start();
     }
 
+    /**
+     * Get the paddle's goa;
+     * @return  the paddle's goal
+     */
     Goal getGoal() {
         return goal;
     }
 
 
-
+    /**
+     * The paddle AI's loop
+     */
+    @Override
     public void run() {
         while(true) {
             Puck puck = ht.getP();
@@ -61,10 +96,17 @@ public class BluePaddle extends RoundEntity implements Runnable {
         }
     }
 
+    /**
+     * Check the paddle's winning condition
+     * @return  the paddle's winning condition
+     */
     boolean isWinner() {
         return isWinner;
     }
 
+    /**
+     * Win the game for NPC
+     */
     void win() {
         isWinner = true;
     }
