@@ -5,9 +5,10 @@ import android.graphics.BitmapFactory;
 
 /**
  * A player-controlled red paddle
- * @author  David Kaluta
- * @version 18
- * @since   1
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 1
  */
 class RedPaddle extends RoundEntity {
 
@@ -23,23 +24,26 @@ class RedPaddle extends RoundEntity {
 
     /**
      * Create a new Red Paddle
-     * @param x     the paddle's x-coordinate
-     * @param y     the paddle's y-coordinate
-     * @param goal  a Goal for the paddle
-     * @param ht    a HockeyTable for resource getting
+     *
+     * @param x    the paddle's x-coordinate
+     * @param y    the paddle's y-coordinate
+     * @param goal a Goal for the paddle
+     * @param ht   a HockeyTable for resource getting
      */
     RedPaddle(int x, int y, Goal goal, HockeyTable ht) {
-        super(x, y, 
-        	Bitmap.createScaledBitmap(
-        	BitmapFactory.decodeResource(
-        	ht.getResources(), R.drawable.red_paddle), 128,128,true));
+        super(x, y,
+                Bitmap.createScaledBitmap(
+                        BitmapFactory.decodeResource(
+                                ht.getResources(), R.drawable.red_paddle),
+                        128, 128, true));
         isWinner = false;
         this.goal = goal;
     }
 
     /**
      * Get the paddle's goal
-     * @return  the goal
+     *
+     * @return the goal
      */
     Goal getGoal() {
         return goal;
@@ -47,6 +51,7 @@ class RedPaddle extends RoundEntity {
 
     /**
      * Check if the red paddle won
+     *
      * @return if the red paddle won
      */
     boolean isWinner() {

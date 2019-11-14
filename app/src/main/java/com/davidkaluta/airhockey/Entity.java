@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 
 /**
  * The parent class for all entities on the Game Board
- * @author  David Kaluta
- * @version 18
- * @since   1
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 1
  */
 public abstract class Entity {
 
@@ -28,9 +29,10 @@ public abstract class Entity {
 
     /**
      * Create a new entity
-     * @param x     X-coordinate
-     * @param y     Y-coordinate
-     * @param bmp   Bitmap
+     *
+     * @param x   X-coordinate
+     * @param y   Y-coordinate
+     * @param bmp Bitmap
      */
     Entity(float x, float y, Bitmap bmp) {
         this.x = x;
@@ -40,6 +42,7 @@ public abstract class Entity {
 
     /**
      * Get the entity's x-coordinate
+     *
      * @return the entity's x-coordinate
      */
     public float getX() {
@@ -48,6 +51,7 @@ public abstract class Entity {
 
     /**
      * Set the entity's x-coordinate
+     *
      * @param x the new x-coordinate
      */
     public void setX(float x) {
@@ -56,6 +60,7 @@ public abstract class Entity {
 
     /**
      * Get the entity's y-coordinate
+     *
      * @return the entity's y-coordinate
      */
     public float getY() {
@@ -64,6 +69,7 @@ public abstract class Entity {
 
     /**
      * Set the entity's y-coordinate
+     *
      * @param y the new y-coordinate
      */
     public void setY(float y) {
@@ -72,6 +78,7 @@ public abstract class Entity {
 
     /**
      * Draw the entity
+     *
      * @param c a canvas to draw the entity on
      */
     void draw(Canvas c) {

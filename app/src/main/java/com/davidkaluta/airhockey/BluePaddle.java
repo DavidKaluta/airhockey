@@ -7,9 +7,10 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
 /**
  * An AI-controlled blue paddle
- * @author  David Kaluta
- * @version 18
- * @since   2
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 2
  */
 public class BluePaddle extends RoundEntity implements Runnable {
 
@@ -35,28 +36,31 @@ public class BluePaddle extends RoundEntity implements Runnable {
 
     /**
      * Create a new blue paddle
-     * @param x     The paddle's x-coordinate
-     * @param y     The paddle's y-coordinate
-     * @param v     The paddle's velocity
-     * @param goal  The paddle's goal
-     * @param ht    The HockeyTable
+     *
+     * @param x    The paddle's x-coordinate
+     * @param y    The paddle's y-coordinate
+     * @param v    The paddle's velocity
+     * @param goal The paddle's goal
+     * @param ht   The HockeyTable
      */
     BluePaddle(int x, int y, double v, Goal goal, HockeyTable ht) {
-        super(x, y, 
-        	Bitmap.createScaledBitmap(
-        	BitmapFactory.decodeResource(
-        	ht.getResources(), R.drawable.blue_paddle), 128,128,true));
+        super(x, y,
+                Bitmap.createScaledBitmap(
+                        BitmapFactory.decodeResource(
+                                ht.getResources(), R.drawable.blue_paddle),
+                        128, 128, true));
         this.v = v;
         this.ht = ht;
         this.goal = goal;
         isWinner = false;
-        Thread thread = new Thread(this,  "aiThread");
+        Thread thread = new Thread(this, "aiThread");
         thread.start();
     }
 
     /**
      * Get the paddle's goa;
-     * @return  the paddle's goal
+     *
+     * @return the paddle's goal
      */
     Goal getGoal() {
         return goal;
@@ -68,29 +72,26 @@ public class BluePaddle extends RoundEntity implements Runnable {
      */
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             Puck puck = ht.getP();
-            if(puck != null) {
+            if (puck != null) {
                 if (v != 123) {
                     if (puck.getCenterPointX() > centerPointX &&
-                     centerPointX + radius < deviceWidth) {
+                            centerPointX + radius < deviceWidth) {
                         x += v;
                         centerPointX += v;
-                    } 
-                    else if (centerPointX - radius > 0) {
+                    } else if (centerPointX - radius > 0) {
                         x -= v;
                         centerPointX -= v;
                     }
-                } 
-                else {
+                } else {
                     centerPointX = puck.centerPointX;
                     x = centerPointX - radius;
                 }
             }
             try {
                 Thread.sleep(2);
-            } 
-            catch(InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -98,7 +99,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
 
     /**
      * Check the paddle's winning condition
-     * @return  the paddle's winning condition
+     *
+     * @return the paddle's winning condition
      */
     boolean isWinner() {
         return isWinner;

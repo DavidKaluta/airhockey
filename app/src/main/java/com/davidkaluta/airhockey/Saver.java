@@ -5,16 +5,16 @@ import android.content.SharedPreferences;
 
 /**
  * A class for saving scores
- * @author  David Kaluta
- * @version 18
- * @since   7
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 7
  */
 class Saver {
 
     /**
-     *
-     * @param context   Activity to get prefs from
-     * @return          number of wins
+     * @param context Activity to get prefs from
+     * @return number of wins
      */
     static int getWins(Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(
@@ -31,8 +31,9 @@ class Saver {
 
     /**
      * Set a new number of wins
-     * @param context   Activity to get prefs from
-     * @param w         new number of wins
+     *
+     * @param context Activity to get prefs from
+     * @param w       new number of wins
      */
     static void setWins(Context context, int w) {
         SharedPreferences sharedPref = context.getSharedPreferences(

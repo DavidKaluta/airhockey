@@ -10,9 +10,10 @@ import android.widget.Spinner;
 
 /**
  * The menu activity
- * @author  David Kaluta
- * @version 18
- * @since   1
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 1
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Prepare for a launch
+     *
      * @param savedInstanceState required for onCreate
      */
     @Override
@@ -30,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String[] difficulties = getResources()
-        	.getStringArray(R.array.difficulties);
+                .getStringArray(R.array.difficulties);
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, difficulties );
+                this, android.R.layout.simple_spinner_item, difficulties);
         spinner = findViewById(R.id.spinner);
         spinner.setAdapter(spinnerArrayAdapter);
         final Intent msi = new Intent(this, MusicService.class);
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Launch the game
+     *
      * @param view required for use in onClick
      */
     public void goToGame(View view) {
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Launch the credits
+     *
      * @param view required for use in onClick
      */
     public void goToCredits(View view) {

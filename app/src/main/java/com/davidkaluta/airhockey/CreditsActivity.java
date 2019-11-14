@@ -7,15 +7,17 @@ import android.widget.TextView;
 
 /**
  * The credits screen
- * @author  David Kaluta
- * @version 18
- * @since   7
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 7
  */
 public class CreditsActivity extends AppCompatActivity {
 
     /**
      * Prepare for creation
-     * @param savedInstanceState    required for Activity
+     *
+     * @param savedInstanceState required for Activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

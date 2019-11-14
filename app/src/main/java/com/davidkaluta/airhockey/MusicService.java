@@ -11,9 +11,10 @@ import android.os.IBinder;
 
 /**
  * A service to play the game's music
- * @author  Leonid Shafran (modified by David Kaluta)
- * @version 18
- * @since   8
+ *
+ * @author Leonid Shafran (modified by David Kaluta)
+ * @version 21
+ * @since 8
  */
 public class MusicService extends Service {
 
@@ -57,11 +58,11 @@ public class MusicService extends Service {
 
     }
 
-    public void setLawVolume(){
+    public void setLawVolume() {
         mPlayer.setVolume(0.2f, 0.2f);
     }
 
-    public void resetLawVolume(){
+    public void resetLawVolume() {
         mPlayer.setVolume(1f, 1f);
     }
 
@@ -128,19 +129,19 @@ public class MusicService extends Service {
 
     private void updateState(String state) {
         // textViewHeadsetState.setText(state);
-        if(state.equals("Plugged")){
+        if (state.equals("Plugged")) {
             setLawVolume();
-        }
-        else{
+        } else {
             resetLawVolume();
         }
     }
 
     /**
      * A BroadcastReceiver for volume control
-     * @author  Leonid Shafran
+     *
+     * @author Leonid Shafran
      * @version 18
-     * @since   8
+     * @since 8
      */
     public class HeadsetIntentReceiver extends BroadcastReceiver {
         @Override

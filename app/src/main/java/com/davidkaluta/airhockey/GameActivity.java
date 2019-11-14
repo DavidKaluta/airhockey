@@ -6,14 +6,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 /**
  * The activity the game runs in
- * @author  David Kaluta
- * @version 18
- * @since   1
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 1
  */
 public class GameActivity extends AppCompatActivity {
 
@@ -21,13 +24,13 @@ public class GameActivity extends AppCompatActivity {
      * The width of the device
      */
     public static final float deviceWidth = Resources.getSystem()
-    	.getDisplayMetrics().widthPixels;
+            .getDisplayMetrics().widthPixels;
 
     /**
      * The height of the device
      */
     public static final float deviceHeight = Resources.getSystem()
-    	.getDisplayMetrics().heightPixels;
+            .getDisplayMetrics().heightPixels;
 
     /**
      * A HockeyTable for the game
@@ -46,6 +49,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Prepare for opening game
+     *
      * @param savedInstanceState required for onCreate
      */
     @Override
@@ -53,7 +57,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String difficulty = intent.getStringExtra("DIFFICULTY");
-        if(difficulty != null)
+        if (difficulty != null)
             ht = new HockeyTable(this, difficulty);
         else
             ht = new HockeyTable(this);
@@ -67,6 +71,7 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Make the app full screen
+     *
      * @param hasFocus is the app in focus
      */
     @Override
@@ -85,8 +90,9 @@ public class GameActivity extends AppCompatActivity {
 
     /**
      * Check if the screen is touched
+     *
      * @param event a MotionEvent with a touch action
-     * @return      true if the screen has been touched
+     * @return true if the screen has been touched
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -100,14 +106,14 @@ public class GameActivity extends AppCompatActivity {
                 yDown = event.getY();
                 ht.getRP().setX(xDown);
                 ht.getRP().setY(yDown > deviceHeight / 2 ?
-                 yDown : deviceHeight/2);
+                        yDown : deviceHeight / 2);
                 return true;
             case MotionEvent.ACTION_MOVE:
                 float xMove = event.getX();
                 float yMove = event.getY();
                 ht.getRP().setX(xMove);
                 ht.getRP().setY(yMove > deviceHeight / 2 ?
-                 yMove : deviceHeight/2);
+                        yMove : deviceHeight / 2);
                 return true;
             default:
                 return super.onTouchEvent(event);

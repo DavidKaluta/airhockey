@@ -4,9 +4,10 @@ import android.graphics.Bitmap;
 
 /**
  * A round entity subclass
- * @author  David Kaluta
- * @version 18
- * @since   1
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 1
  */
 public abstract class RoundEntity extends Entity {
 
@@ -27,22 +28,24 @@ public abstract class RoundEntity extends Entity {
 
     /**
      * Initialize a new round entity
-     * @param x     The entity's x-coordinate
-     * @param y     The entity's x-coordinate
-     * @param bmp   A Bitmap
+     *
+     * @param x   The entity's x-coordinate
+     * @param y   The entity's x-coordinate
+     * @param bmp A Bitmap
      */
     RoundEntity(float x, float y, Bitmap bmp) {
-        super(x-(float)bmp.getWidth()/2, y-(float)bmp.getHeight()/2, bmp);
-        radius = bmp.getWidth()/2;
+        super(x - (float) bmp.getWidth() / 2, y - (float) bmp.getHeight() / 2, bmp);
+        radius = bmp.getWidth() / 2;
         centerPointX = x + radius;
-        x-=radius;
+        x -= radius;
         centerPointY = y + radius;
-        y-=radius;
+        y -= radius;
     }
 
     /**
      * Get the center point x-coordinate
-     * @return  the center point x-coordinate
+     *
+     * @return the center point x-coordinate
      */
     float getCenterPointX() {
         return centerPointX;
@@ -51,7 +54,8 @@ public abstract class RoundEntity extends Entity {
 
     /**
      * Get the center point y-coordinate
-     * @return  the center point y-coordinate
+     *
+     * @return the center point y-coordinate
      */
     public float getCenterPointY() {
         return centerPointY;
@@ -60,7 +64,8 @@ public abstract class RoundEntity extends Entity {
 
     /**
      * Get the entity radius
-     * @return  the entity's radius
+     *
+     * @return the entity's radius
      */
     public float getRadius() {
         return radius;
@@ -69,6 +74,7 @@ public abstract class RoundEntity extends Entity {
 
     /**
      * Set the x-coordinate with changing the center point
+     *
      * @param x the new x-coordinate
      */
     @Override
@@ -79,6 +85,7 @@ public abstract class RoundEntity extends Entity {
 
     /**
      * Set the y-coordinate with changing the center point
+     *
      * @param y the new y-coordinate
      */
     @Override
@@ -89,15 +96,16 @@ public abstract class RoundEntity extends Entity {
 
     /**
      * Get the distance between 2 round entities
+     *
      * @param other another RoundEntity
-     * @return      the distance between them
+     * @return the distance between them
      */
     float distanceFrom(RoundEntity other) {
         return (float) Math.sqrt(
-                (centerPointX - other.centerPointX)*
-                (centerPointX - other.centerPointX)
-                +(centerPointY - other.centerPointY)*
-                (centerPointY - other.centerPointY));
+                (centerPointX - other.centerPointX) *
+                        (centerPointX - other.centerPointX)
+                        + (centerPointY - other.centerPointY) *
+                        (centerPointY - other.centerPointY));
     }
 
 }

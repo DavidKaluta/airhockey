@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 
 import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
@@ -15,9 +16,10 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
 /**
  * The View for the game
- * @author  David Kaluta
- * @version 18
- * @since   1
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 1
  */
 public class HockeyTable extends View {
 
@@ -53,8 +55,9 @@ public class HockeyTable extends View {
 
     /**
      * Create a HockeyTable with a difficulty
-     * @param context       required for a View
-     * @param difficulty    The difficulty level
+     *
+     * @param context    required for a View
+     * @param difficulty The difficulty level
      */
     public HockeyTable(Context context, @NonNull String difficulty) {
         super(context);
@@ -71,33 +74,34 @@ public class HockeyTable extends View {
                 BitmapFactory.decodeResource(
                         getResources(), R.drawable.black_pixel)
                 , deviceWidth, 20, true);
-        rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,
-                new Goal(deviceWidth/4, 0, this),this);
-        switch(difficulty) {
+        rp = new RedPaddle(deviceWidth / 2, 7 * deviceHeight / 8,
+                new Goal(deviceWidth / 4, 0, this), this);
+        switch (difficulty) {
             case "Easy":
-                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,0.5,
-                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 0.5,
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
                 break;
             case "Medium":
             default:
-                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,1,
-                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 1,
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
                 break;
             case "Hard":
-                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,2,
-                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 2,
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
                 break;
             case "BRUTAL":
-                bp = new BluePaddle(deviceWidth/2, deviceHeight/8,123,
-                        new Goal(deviceWidth/4, deviceHeight-10, this), this);
+                bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 123,
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
                 break;
         }
-        p = new Puck(deviceWidth/2, deviceHeight/2, this);
+        p = new Puck(deviceWidth / 2, deviceHeight / 2, this);
     }
 
     /**
      * Create a HockeyTable without a difficulty (will be Medium)
-     * @param context   required for a View
+     *
+     * @param context required for a View
      */
     public HockeyTable(Context context) {
         super(context);
@@ -114,16 +118,17 @@ public class HockeyTable extends View {
                 BitmapFactory.decodeResource(
                         getResources(), R.drawable.black_pixel)
                 , deviceWidth, 20, true);
-        rp = new RedPaddle(deviceWidth/2,7*deviceHeight/8,
-                new Goal(deviceWidth/4, 0, this),this);
-        bp = new BluePaddle(deviceWidth/2, deviceHeight/8,1,
-                new Goal(deviceWidth/4, deviceHeight-10, this), this);
-        p = new Puck(deviceWidth/2, deviceHeight/2, this);
+        rp = new RedPaddle(deviceWidth / 2, 7 * deviceHeight / 8,
+                new Goal(deviceWidth / 4, 0, this), this);
+        bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 1,
+                new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
+        p = new Puck(deviceWidth / 2, deviceHeight / 2, this);
     }
 
     /**
      * Get the red paddle
-     * @return  the red paddle
+     *
+     * @return the red paddle
      */
     public RedPaddle getRP() {
         return rp;
@@ -131,7 +136,8 @@ public class HockeyTable extends View {
 
     /**
      * Get the puck
-     * @return  the puck
+     *
+     * @return the puck
      */
     public Puck getP() {
         return p;
@@ -139,7 +145,8 @@ public class HockeyTable extends View {
 
     /**
      * Get the blue paddle
-     * @return  the blue paddle
+     *
+     * @return the blue paddle
      */
     public BluePaddle getBP() {
         return bp;
@@ -147,12 +154,13 @@ public class HockeyTable extends View {
 
     /**
      * Draw everything
+     *
      * @param c required for onDraw
      */
     protected void onDraw(Canvas c) {
         super.onDraw(c);
         c.drawBitmap(bg, 0, 0, null);
-        c.drawBitmap(line, 0,deviceHeight/2 - 10, null);
+        c.drawBitmap(line, 0, deviceHeight / 2 - 10, null);
         rp.draw(c);
         rp.getGoal().draw(c);
         bp.getGoal().draw(c);
@@ -160,17 +168,17 @@ public class HockeyTable extends View {
         p.draw(c);
         paint.setTextSize(144);
         paint.setColor(Color.WHITE);
-        if(rp.isWinner())
+        if (rp.isWinner())
             c.drawText(getContext().getString(R.string.red_victory),
-             200, deviceHeight / 2 - 100, paint);
-        if(bp.isWinner())
+                    200, deviceHeight / 2 - 100, paint);
+        if (bp.isWinner())
             c.drawText(getContext().getString(R.string.blue_victory),
-             200, deviceHeight / 2 - 100, paint);
+                    200, deviceHeight / 2 - 100, paint);
         paint.setTextSize(50);
         c.drawText(Integer.toString(rp.getGoal().getScore()),
-         10, deviceHeight - 100, paint);
+                10, deviceHeight - 100, paint);
         c.drawText(Integer.toString(bp.getGoal().getScore()),
-         deviceWidth - 100, 50, paint);
+                deviceWidth - 100, 50, paint);
         invalidate();
     }
 }

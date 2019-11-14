@@ -7,9 +7,10 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
 /**
  * A Goal
- * @author  David Kaluta
- * @version 18
- * @since   5
+ *
+ * @author David Kaluta
+ * @version 21
+ * @since 5
  */
 class Goal extends Entity {
     /**
@@ -19,21 +20,23 @@ class Goal extends Entity {
 
     /**
      * Create a new goal
-     * @param x     the goal's x-coordinate
-     * @param y     The goal's y-coordinate
-     * @param ht    A HockeyTable for resources
+     *
+     * @param x  the goal's x-coordinate
+     * @param y  The goal's y-coordinate
+     * @param ht A HockeyTable for resources
      */
     Goal(float x, float y, HockeyTable ht) {
-        super(x,y, Bitmap.createScaledBitmap(
+        super(x, y, Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(ht.getResources()
                         , R.drawable.white_pixel),
-                (int) deviceWidth/2, 10, true));
+                (int) deviceWidth / 2, 10, true));
         score = 0;
     }
 
     /**
      * Get the goal's score
-     * @return  the goal's score
+     *
+     * @return the goal's score
      */
     int getScore() {
         return score;
