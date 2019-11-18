@@ -1,6 +1,5 @@
 package com.davidkaluta.airhockey;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -11,7 +10,7 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
  * The puck
  *
  * @author David Kaluta
- * @version 21
+ * @version 22
  * @since 1
  */
 public class Puck extends RoundEntity implements Runnable {
@@ -41,7 +40,8 @@ public class Puck extends RoundEntity implements Runnable {
     Puck(float x, float y, HockeyTable ht) {
         super(x, y,
                 Bitmap.createScaledBitmap(
-                        BitmapFactory.decodeResource(ht.getResources(), R.drawable.puck),
+                        BitmapFactory.decodeResource(ht.getResources(),
+                        R.drawable.puck),
                         64, 64, true));
         Thread thread = new Thread(this, "PuckThread");
         this.ht = ht;
@@ -155,6 +155,14 @@ public class Puck extends RoundEntity implements Runnable {
                         }
                     }
                 }
+            }
+            if(dx == 0 && dy == 0) {
+                centerPointX = deviceWidth / 2;
+                x = centerPointX - radius;
+                centerPointY = deviceHeight / 2;
+                y = centerPointY - radius;
+                dy = 5;
+                dx = 0;
             }
             x += dx;
             centerPointX += dx;

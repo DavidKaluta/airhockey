@@ -4,18 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * A class for saving scores
+ * Saving code
  *
  * @author David Kaluta
- * @version 21
- * @since 7
+ * @version 22
+ * @since 8
  */
 class Saver {
-
-    /**
-     * @param context Activity to get prefs from
-     * @return number of wins
-     */
     static int getWins(Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.preferences_file_key),
@@ -29,12 +24,6 @@ class Saver {
                 defaultValue);
     }
 
-    /**
-     * Set a new number of wins
-     *
-     * @param context Activity to get prefs from
-     * @param w       new number of wins
-     */
     static void setWins(Context context, int w) {
         SharedPreferences sharedPref = context.getSharedPreferences(
                 context.getString(R.string.preferences_file_key),
@@ -43,6 +32,4 @@ class Saver {
         editor.putInt(context.getString(R.string.victories_key), w);
         editor.apply();
     }
-
-
 }

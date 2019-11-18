@@ -18,7 +18,7 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
  * The View for the game
  *
  * @author David Kaluta
- * @version 21
+ * @version 22
  * @since 1
  */
 public class HockeyTable extends View {
@@ -79,20 +79,24 @@ public class HockeyTable extends View {
         switch (difficulty) {
             case "Easy":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 0.5,
-                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this),
+                         this);
                 break;
             case "Medium":
             default:
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 1,
-                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this),
+                         this);
                 break;
             case "Hard":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 2,
-                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this),
+                         this);
                 break;
             case "BRUTAL":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 123,
-                        new Goal(deviceWidth / 4, deviceHeight - 10, this), this);
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this),
+                         this);
                 break;
         }
         p = new Puck(deviceWidth / 2, deviceHeight / 2, this);
