@@ -34,7 +34,8 @@ public abstract class RoundEntity extends Entity {
      * @param bmp A Bitmap
      */
     RoundEntity(float x, float y, Bitmap bmp) {
-        super(x - (float) bmp.getWidth() / 2, y - (float) bmp.getHeight() / 2, bmp);
+        super(x - (float) bmp.getWidth() / 2, y - (float) bmp.getHeight() / 2,
+         bmp);
         radius = bmp.getWidth() / 2;
         centerPointX = x + radius;
         x -= radius;

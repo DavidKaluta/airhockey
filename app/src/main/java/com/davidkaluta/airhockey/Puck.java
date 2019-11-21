@@ -41,7 +41,7 @@ public class Puck extends RoundEntity implements Runnable {
         super(x, y,
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(ht.getResources(),
-                        R.drawable.puck),
+                                R.drawable.puck),
                         64, 64, true));
         Thread thread = new Thread(this, "PuckThread");
         this.ht = ht;
@@ -112,8 +112,10 @@ public class Puck extends RoundEntity implements Runnable {
                         double radian2 = Math.acos(dy / 5);
                         double angle = radian1 + radian2;
                         double anotherRadian = Math.PI / 2 - angle;
-                        float dxAdjusted = 5 * (float) Math.cos(anotherRadian);
-                        float dyAdjusted = 5 * (float) Math.sin(anotherRadian);
+//                        float dxAdjusted =
+                                5 * (float) Math.cos(anotherRadian);
+                        float dyAdjusted =
+                                5 * (float) Math.sin(anotherRadian);
                         dx = dxAdjusted * (float) Math.sin(anotherRadian);
                         if (centerPointY < bp.centerPointY)
                             dy = -dyAdjusted * (float) Math.cos(angle);
@@ -156,7 +158,7 @@ public class Puck extends RoundEntity implements Runnable {
                     }
                 }
             }
-            if(dx == 0 && dy == 0) {
+            if (dx == 0 && dy == 0) {
                 centerPointX = deviceWidth / 2;
                 x = centerPointX - radius;
                 centerPointY = deviceHeight / 2;
