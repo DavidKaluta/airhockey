@@ -112,7 +112,7 @@ public class Puck extends RoundEntity implements Runnable {
                         double radian2 = Math.acos(dy / 5);
                         double angle = radian1 + radian2;
                         double anotherRadian = Math.PI / 2 - angle;
-//                        float dxAdjusted =
+                        float dxAdjusted =
                                 5 * (float) Math.cos(anotherRadian);
                         float dyAdjusted =
                                 5 * (float) Math.sin(anotherRadian);
