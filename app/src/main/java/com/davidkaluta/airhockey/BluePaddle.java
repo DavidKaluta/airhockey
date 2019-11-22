@@ -85,7 +85,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
                         x -= v;
                         centerPointX -= v;
                     }
-                } else {
+                } 
+                else {
                     centerPointX = puck.centerPointX;
                     x = centerPointX - radius;
                 }
