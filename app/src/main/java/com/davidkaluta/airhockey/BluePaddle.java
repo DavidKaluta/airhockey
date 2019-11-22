@@ -91,7 +91,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
             }
             try {
                 Thread.sleep(2);
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
