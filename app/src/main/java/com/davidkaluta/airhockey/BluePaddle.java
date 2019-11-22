@@ -80,7 +80,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
                             centerPointX + radius < deviceWidth) {
                         x += v;
                         centerPointX += v;
-                    } else if (centerPointX - radius > 0) {
+                    } 
+                    else if (centerPointX - radius > 0) {
                         x -= v;
                         centerPointX -= v;
                     }
