@@ -79,7 +79,8 @@ public class MusicService extends Service {
                 // Rewind to beginning of song
                 mPlayer.seekTo(0);
 
-            } else {
+            } 
+            else {
 
                 // Start playing song
                 mPlayer.start();
@@ -131,7 +132,8 @@ public class MusicService extends Service {
         // textViewHeadsetState.setText(state);
         if (state.equals("Plugged")) {
             setLawVolume();
-        } else {
+        } 
+        else {
             resetLawVolume();
         }
     }
