@@ -25,6 +25,11 @@ public abstract class RoundEntity extends Entity {
      * The round entity's radius
      */
     float radius;
+    
+    /**
+     * The entity's mass
+     */
+    float mass;
 
     /**
      * Initialize a new round entity
@@ -33,9 +38,10 @@ public abstract class RoundEntity extends Entity {
      * @param y   The entity's x-coordinate
      * @param bmp A Bitmap
      */
-    RoundEntity(float x, float y, Bitmap bmp) {
+    RoundEntity(float x, float y, float mass, Bitmap bmp) {
         super(x - (float) bmp.getWidth() / 2, y - (float) bmp.getHeight() / 2,
          bmp);
+        this.mass = mass;
         radius = bmp.getWidth() / 2;
         centerPointX = x + radius;
         x -= radius;
@@ -70,6 +76,15 @@ public abstract class RoundEntity extends Entity {
      */
     public float getRadius() {
         return radius;
+    }
+    
+    /**
+     * Get the entity's mass
+     *
+     * @return the entity's mass
+     */
+    public float getMass() {
+    	return mass;
     }
 
 

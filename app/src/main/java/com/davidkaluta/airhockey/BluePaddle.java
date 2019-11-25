@@ -44,7 +44,7 @@ public class BluePaddle extends RoundEntity implements Runnable {
      * @param ht   The HockeyTable
      */
     BluePaddle(int x, int y, double v, Goal goal, HockeyTable ht) {
-        super(x, y,
+        super(x, y, 2.5f,
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(
                                 ht.getResources(), R.drawable.blue_paddle),

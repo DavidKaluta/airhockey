@@ -31,7 +31,7 @@ class RedPaddle extends RoundEntity {
      * @param ht   a HockeyTable for resource getting
      */
     RedPaddle(int x, int y, Goal goal, HockeyTable ht) {
-        super(x, y,
+        super(x, y, 2.5f,
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(
                                 ht.getResources(), R.drawable.red_paddle),

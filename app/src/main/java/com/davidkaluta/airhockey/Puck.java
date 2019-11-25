@@ -31,6 +31,16 @@ public class Puck extends RoundEntity implements Runnable {
     private HockeyTable ht;
 
     /**
+     * The previous coordinates of the red paddle
+     */
+    private float[] rpPrevCoords;
+
+    /**
+     * The previous coordinates of the blue paddle
+     */
+    private float[] bpPrevCoords;
+
+    /**
      * Create a Puck
      *
      * @param x  X-position for the puck
@@ -38,15 +48,17 @@ public class Puck extends RoundEntity implements Runnable {
      * @param ht The HockeyTable
      */
     Puck(float x, float y, HockeyTable ht) {
-        super(x, y,
+        super(x, y, 0.5f,
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(ht.getResources(),
                                 R.drawable.puck),
                         64, 64, true));
         Thread thread = new Thread(this, "PuckThread");
+        rpPrevCoords = new float[2];
+        bpPrevCoords = new float[2];
         this.ht = ht;
         dx = 0;
-        dy = 5;
+        dy = 0;
         thread.start();
     }
 
@@ -66,66 +78,45 @@ public class Puck extends RoundEntity implements Runnable {
                 dy = -dy;
             RedPaddle rp = ht.getRP();
             System.out.println(distanceFrom(rp));
-            if (distanceFrom(rp) <= radius + rp.radius) {
-                float a = (rp.centerPointY - centerPointY)
-                        / (rp.centerPointX - centerPointX);
-                float b = centerPointX - centerPointX * a;
-                float xStart = -b / a;
-                double tan;
-                if (xStart < 0) {
-                    tan = centerPointX / (centerPointY - b);
-                } else {
-                    tan = (centerPointX - xStart) / centerPointY;
-                }
-                double radian1 = Math.atan(tan);
-                double radian2 = Math.acos(dy / 5);
-                double angle = radian1 + radian2;
-                double anotherRadian = Math.PI / 2 - angle;
-                float dxAdjusted = 5 * (float) Math.cos(anotherRadian);
-                float dyAdjusted = 5 * (float) Math.sin(anotherRadian);
-                dx = dxAdjusted * (float) Math.sin(anotherRadian);
-                if (centerPointY > rp.centerPointY)
-                    dy = dyAdjusted * (float) Math.cos(angle);
-                else if (centerPointY < rp.centerPointY)
-                    dy = -dyAdjusted * (float) Math.cos(angle);
+            if (distanceFrom(rp) - 32 <= radius + rp.radius) {
+                float[] rpCurrentCoords = {rp.getX(), rp.getY()};
+                float rpDx = (rpCurrentCoords[0] - rpPrevCoords[0]);
+                float rpDy = (rpCurrentCoords[1] - rpPrevCoords[1]);
+                if (centerPointX > rp.centerPointX)
+                    dx = (mass * dx + rp.getMass()
+                            * rpDx - rp.getMass() * (rpDx - 0.5f)) / mass;
                 else
-                    dy = 0;
+                    dx = -(mass * dx + rp.getMass()
+                            * rpDx - rp.getMass() * (rpDx - 0.5f)) / mass;
+                if (centerPointY > rp.centerPointY)
+                    dy = (mass * dy + rp.getMass()
+                            * rpDy - rp.getMass() * (rpDy - 0.5f)) / mass;
+                else
+                    dy = -(mass * dy + rp.getMass()
+                            * rpDy - rp.getMass() * (rpDy - 0.5f)) / mass;
+                dx /= 2.5f;
+                dy /= 2.5f;
             }
             BluePaddle bp = ht.getBP();
             if (bp != null) {
                 if (distanceFrom(bp) <= radius + bp.radius) {
-                    float a;
-                    float b;
-                    float xStart;
-                    if (bp.centerPointX - centerPointX != 0) {
-                        a = (bp.centerPointY - centerPointY)
-                                / (bp.centerPointX - centerPointX);
-                        b = centerPointX - centerPointX * a;
-                        xStart = -b / a;
-                        double tan;
-                        if (xStart < 0) {
-                            tan = centerPointX / (centerPointY - b);
-                        } else {
-                            tan = (centerPointX - xStart) / centerPointY;
-                        }
-                        double radian1 = Math.atan(tan);
-                        double radian2 = Math.acos(dy / 5);
-                        double angle = radian1 + radian2;
-                        double anotherRadian = Math.PI / 2 - angle;
-                        float dxAdjusted =
-                                5 * (float) Math.cos(anotherRadian);
-                        float dyAdjusted =
-                                5 * (float) Math.sin(anotherRadian);
-                        dx = dxAdjusted * (float) Math.sin(anotherRadian);
-                        if (centerPointY < bp.centerPointY)
-                            dy = -dyAdjusted * (float) Math.cos(angle);
-                        else if (centerPointY > bp.centerPointY)
-                            dy = dyAdjusted * (float) Math.cos(angle);
-                        else
-                            dy = 0;
-                    } else {
-                        dy = -dy;
-                    }
+                    float[] bpCurrentCoords = {bp.getX(), bp.getY()};
+                    float bpDx = (bpCurrentCoords[0] - bpPrevCoords[0]);
+                    float bpDy = (bpCurrentCoords[1] - bpPrevCoords[1]);
+                    if (centerPointX > bp.centerPointX)
+                        dx = (mass * dx + bp.getMass() *
+                                bpDx - bp.getMass() * (bpDx - 0.5f)) / mass;
+                    else
+                        dx = -(mass * dx + bp.getMass() *
+                                bpDx - bp.getMass() * (bpDx - 0.5f)) / mass;
+                    if (centerPointY > bp.centerPointY)
+                        dy = (mass * dy + bp.getMass() *
+                                bpDy - rp.getMass() * (bpDy - 0.5f)) / mass;
+                    else
+                        dy = -(mass * dy + rp.getMass() *
+                                bpDy - rp.getMass() * (bpDy - 0.5f)) / mass;
+                    dx /= 2.5f;
+                    dy /= 2.5f;
 
                 }
             }
@@ -165,6 +156,14 @@ public class Puck extends RoundEntity implements Runnable {
                 y = centerPointY - radius;
                 dy = 5;
                 dx = 0;
+            }
+            if (rp != null) {
+                rpPrevCoords[0] = rp.getX();
+                rpPrevCoords[1] = rp.getY();
+            }
+            if (bp != null) {
+                bpPrevCoords[0] = bp.getX();
+                bpPrevCoords[1] = bp.getY();
             }
             x += dx;
             centerPointX += dx;
