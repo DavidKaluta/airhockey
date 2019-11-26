@@ -79,23 +79,29 @@ public class Puck extends RoundEntity implements Runnable {
             RedPaddle rp = ht.getRP();
             if(rp != null) {
             	if (distanceFrom(rp) - 32 <= radius + rp.radius) {
-                	float[] rpCurrentCoords = {rp.getX(), rp.getY()};
-                	float rpDx = (rpCurrentCoords[0] - rpPrevCoords[0]);
-                	float rpDy = (rpCurrentCoords[1] - rpPrevCoords[1]);
-                	if (centerPointX > rp.centerPointX)
-                    	dx = (mass * dx + rp.getMass()
-                            	* rpDx - rp.getMass() * (rpDx - 0.5f)) / mass;
-                	else
-                    	dx = -(mass * dx + rp.getMass()
-                            	* rpDx - rp.getMass() * (rpDx - 0.5f)) / mass;
-                	if (centerPointY > rp.centerPointY)
-                    	dy = (mass * dy + rp.getMass()
-                            	* rpDy - rp.getMass() * (rpDy - 0.5f)) / mass;
-                	else
-                    	dy = -(mass * dy + rp.getMass()
-                            	* rpDy - rp.getMass() * (rpDy - 0.5f)) / mass;
-                	dx /= 2.5f;
-                	dy /= 2.5f;
+                    float[] rpCurrentCoords = {rp.getX(), rp.getY()};
+                    float rpDx = (rpCurrentCoords[0] - rpPrevCoords[0]);
+                    float rpDy = (rpCurrentCoords[1] - rpPrevCoords[1]);
+                    if (rpDx > 0) {
+                        dx = (mass * dx + rp.getMass() *
+                                rpDx - rp.getMass() * (rpDx - 0.5f)) / mass;
+                    }
+                    else if (rpDx < 0) {
+                        dx = (mass * dx + rp.getMass() *
+                                rpDx - rp.getMass() * (rpDx + 0.5f)) / mass;
+                    }
+                    else {
+                        dx = (mass * dx + rp.getMass() *
+                                rpDx - rp.getMass() * rpDx) / mass;
+                    }
+                    if (centerPointX < rp.centerPointX)
+                        dx = -dx;
+                    dy = (mass * dy + rp.getMass() *
+                            rpDy - rp.getMass() * (rpDy - 0.5f)) / mass;
+                    if (centerPointY < rp.centerPointY)
+                        dy = -dy;
+                    dx /= 1.25f;
+                    dy /= 1.25f;
             	}
             }
             BluePaddle bp = ht.getBP();
@@ -104,21 +110,26 @@ public class Puck extends RoundEntity implements Runnable {
                     float[] bpCurrentCoords = {bp.getX(), bp.getY()};
                     float bpDx = (bpCurrentCoords[0] - bpPrevCoords[0]);
                     float bpDy = (bpCurrentCoords[1] - bpPrevCoords[1]);
-                    if (centerPointX > bp.centerPointX)
+                    if (bpDx > 0) {
                         dx = (mass * dx + bp.getMass() *
                                 bpDx - bp.getMass() * (bpDx - 0.5f)) / mass;
-                    else
-                        dx = -(mass * dx + bp.getMass() *
-                                bpDx - bp.getMass() * (bpDx - 0.5f)) / mass;
-                    if (centerPointY > bp.centerPointY)
-                        dy = (mass * dy + bp.getMass() *
-                                bpDy - rp.getMass() * (bpDy - 0.5f)) / mass;
-                    else
-                        dy = -(mass * dy + rp.getMass() *
-                                bpDy - rp.getMass() * (bpDy - 0.5f)) / mass;
-                    dx /= 2.5f;
-                    dy /= 2.5f;
-
+                    }
+                    else if(bpDx < 0) {
+                        dx = (mass * dx + bp.getMass() *
+                                bpDx - bp.getMass() * (bpDx + 0.5f)) / mass;
+                    }
+                    else {
+                        dx = (mass * dx + bp.getMass() *
+                                bpDx - bp.getMass() * bpDx) / mass;
+                    }
+                    if (centerPointX < bp.centerPointX)
+                        dx = -dx;
+                    dy = (mass * dy + bp.getMass() *
+                            bpDy - rp.getMass() * (bpDy - 0.5f)) / mass;
+                    if (centerPointY < bp.centerPointY)
+                        dy = -dy;
+                    dx /= 1.25f;
+                    dy /= 1.25f;
                 }
                 if (rp.getGoal() != null && bp.getGoal() != null) {
                     if (x + radius * 2 > rp.getGoal().x
