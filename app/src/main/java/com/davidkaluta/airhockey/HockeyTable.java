@@ -11,6 +11,9 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
 import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
@@ -18,7 +21,7 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
  * The View for the game
  *
  * @author David Kaluta
- * @version 22
+ * @version 24
  * @since 1
  */
 public class HockeyTable extends View {
@@ -53,6 +56,10 @@ public class HockeyTable extends View {
      */
     Paint paint;
 
+    Timer timer;
+
+    int pauseTime;
+
     /**
      * Create a HockeyTable with a difficulty
      *
@@ -66,6 +73,10 @@ public class HockeyTable extends View {
                 .widthPixels;
         int deviceHeight = Resources.getSystem().getDisplayMetrics()
                 .heightPixels;
+        pauseTime = -4;
+        TimerTask timerTask = new TimeHelper();
+        timer = new Timer();
+        timer.schedule(timerTask, 1000, 1000);
         bg = Bitmap.createScaledBitmap(
                 BitmapFactory.decodeResource(
                         getResources(), R.drawable.black_pixel)
@@ -141,7 +152,7 @@ public class HockeyTable extends View {
     /**
      * Get the puck
      *
-     * @return the puck
+     * @return  the puck
      */
     public Puck getP() {
         return p;
@@ -150,7 +161,7 @@ public class HockeyTable extends View {
     /**
      * Get the blue paddle
      *
-     * @return the blue paddle
+     * @return  the blue paddle
      */
     public BluePaddle getBP() {
         return bp;
@@ -177,6 +188,9 @@ public class HockeyTable extends View {
                     200, deviceHeight / 2 - 100, paint);
         if (bp.isWinner())
             c.drawText(getContext().getString(R.string.blue_victory),
+                    200, deviceHeight / 2 - 100, paint);
+        if (TimeHelper.seconds - 3 < pauseTime)
+            c.drawText(getContext().getString(R.string.goal),
                     200, deviceHeight / 2 - 100, paint);
         paint.setTextSize(50);
         c.drawText(Integer.toString(rp.getGoal().getScore()),
