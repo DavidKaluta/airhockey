@@ -10,7 +10,7 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
  * The puck
  *
  * @author David Kaluta
- * @version 24
+ * @version 25
  * @since 1
  */
 public class Puck extends RoundEntity implements Runnable {
@@ -103,58 +103,64 @@ public class Puck extends RoundEntity implements Runnable {
                     dy = -dy;
                 RedPaddle rp = ht.getRP();
                 if (rp != null) {
-                    if (distanceFrom(rp) - 32 <= radius + rp.radius) {
-                        float[] rpCurrentCoords = {rp.getX(), rp.getY()};
-                        float rpDx = (rpCurrentCoords[0] - rpPrevCoords[0]);
-                        float rpDy = (rpCurrentCoords[1] - rpPrevCoords[1]);
-                        if (rpDx > 0) {
-                            dx = (mass * dx + rp.getMass() *
-                                    rpDx - rp.getMass() * (rpDx - 0.5f))
-                                    / mass;
-                        } else if (rpDx < 0) {
-                            dx = (mass * dx + rp.getMass() *
-                                    rpDx - rp.getMass() * (rpDx + 0.5f))
-                                    / mass;
-                        } else {
-                            dx = (mass * dx + rp.getMass() *
-                                    rpDx - rp.getMass() * rpDx) / mass;
+                    if (distanceFrom(rp) <= radius + rp.radius) {
+                        float m = dy/dx;
+                        float[] rpCoords = {rp.getCenterPointX(), rp.getCenterPointY()};
+                        // y - rpCoords[1] = m(x-rpCoords[0])
+                        // y = mx - m*rpCoords[0] + rpCoords[1]
+                        if(centerPointY < m*centerPointX  - m*rpCoords[0] + rpCoords[1]) {
+                            if(centerPointY > rp.centerPointY) {
+                                dy = dy;
+                                dx = -dx;
+                            }
+                            else {
+                                dy = -dy;
+                                dx = dx;
+                            }
                         }
-                        if (centerPointX < rp.centerPointX)
+                        else if(centerPointY > m*centerPointX  - m*rpCoords[0] + rpCoords[1]) {
+                            if(centerPointY > rp.centerPointY) {
+                                dx = dx;
+                                dy = -dy;
+                            }
+                            else {
+                                dx = -dx;
+                                dy = dy;
+                            }
+                        }
+                        else {
                             dx = -dx;
-                        dy = (mass * dy + rp.getMass() *
-                                rpDy - rp.getMass() * (rpDy - 0.5f)) / mass;
-                        if (centerPointY < rp.centerPointY)
                             dy = -dy;
-                        dx /= 1.25f;
-                        dy /= 1.25f;
+                        }
                     }
                 }
                 BluePaddle bp = ht.getBP();
                 if (bp != null) {
                     if (distanceFrom(bp) <= radius + bp.radius) {
-                        float[] bpCurrentCoords = {bp.getX(), bp.getY()};
-                        float bpDx = (bpCurrentCoords[0] - bpPrevCoords[0]);
-                        float bpDy = (bpCurrentCoords[1] - bpPrevCoords[1]);
-                        if (bpDx > 0) {
-                            dx = (mass * dx + bp.getMass() *
-                                    bpDx - bp.getMass() * (bpDx - 0.5f))
-                                    / mass;
-                        } else if (bpDx < 0) {
-                            dx = (mass * dx + bp.getMass() *
-                                    bpDx - bp.getMass() * (bpDx + 0.5f))
-                                    / mass;
+                        float m = dy / dx;
+                        float[] bpCoords = {bp.getCenterPointX(), bp.getCenterPointY()};
+                        // y - rpCoords[1] = m(x-rpCoords[0])
+                        // y = mx - m*rpCoords[0] + rpCoords[1]
+                        if (centerPointY < m * centerPointX - m * bpCoords[0] + bpCoords[1]) {
+                            if (centerPointY > bp.centerPointY) {
+                                dy = dy;
+                                dx = -dx;
+                            } else {
+                                dy = -dy;
+                                dx = dx;
+                            }
+                        } else if (centerPointY > m * centerPointX - m * bpCoords[0] + bpCoords[1]) {
+                            if (centerPointY > bp.centerPointY) {
+                                dx = dx;
+                                dy = -dy;
+                            } else {
+                                dx = -dx;
+                                dy = dy;
+                            }
                         } else {
-                            dx = (mass * dx + bp.getMass() *
-                                    bpDx - bp.getMass() * bpDx) / mass;
-                        }
-                        if (centerPointX < bp.centerPointX)
                             dx = -dx;
-                        dy = (mass * dy + bp.getMass() *
-                                bpDy - rp.getMass() * (bpDy - 0.5f)) / mass;
-                        if (centerPointY < bp.centerPointY)
                             dy = -dy;
-                        dx /= 1.25f;
-                        dy /= 1.25f;
+                        }
                     }
                     if (rp.getGoal() != null && bp.getGoal() != null) {
                         if (x + radius * 2 > rp.getGoal().x
@@ -197,8 +203,8 @@ public class Puck extends RoundEntity implements Runnable {
                     x = centerPointX - radius;
                     centerPointY = deviceHeight / 2;
                     y = centerPointY - radius;
-                    dy = 5;
-                    dx = 0;
+                    dy = 2;
+                    dx = 2;
                 }
                 if (rp != null) {
                     rpPrevCoords[0] = rp.getX();
