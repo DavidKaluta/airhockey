@@ -10,7 +10,7 @@ import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
  * The puck
  *
  * @author David Kaluta
- * @version 25
+ * @version 26
  * @since 1
  */
 public class Puck extends RoundEntity implements Runnable {
@@ -29,6 +29,11 @@ public class Puck extends RoundEntity implements Runnable {
      * A HockeyTable to get the Paddles
      */
     private HockeyTable ht;
+
+    /**
+     * The puck's previous coordinates
+     */
+    private float[] prevCoords;
 
     /**
      * The previous coordinates of the red paddle
@@ -61,6 +66,7 @@ public class Puck extends RoundEntity implements Runnable {
         Thread thread = new Thread(this, "PuckThread");
         rpPrevCoords = new float[2];
         bpPrevCoords = new float[2];
+        prevCoords = new float[2];
         goal = false;
         this.ht = ht;
         dx = 0;
@@ -112,25 +118,45 @@ public class Puck extends RoundEntity implements Runnable {
                             if(centerPointY > rp.centerPointY) {
                                 dy = dy;
                                 dx = -dx;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             }
                             else {
                                 dy = -dy;
                                 dx = dx;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             }
                         }
                         else if(centerPointY > m*centerPointX  - m*rpCoords[0] + rpCoords[1]) {
                             if(centerPointY > rp.centerPointY) {
                                 dx = dx;
                                 dy = -dy;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             }
                             else {
                                 dx = -dx;
                                 dy = dy;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             }
                         }
                         else {
                             dx = -dx;
                             dy = -dy;
+                            x = prevCoords[0];
+                            centerPointX = x + radius;
+                            y = prevCoords[1];
+                            centerPointY = y + radius;
                         }
                     }
                 }
@@ -145,21 +171,42 @@ public class Puck extends RoundEntity implements Runnable {
                             if (centerPointY > bp.centerPointY) {
                                 dy = dy;
                                 dx = -dx;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             } else {
                                 dy = -dy;
                                 dx = dx;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             }
                         } else if (centerPointY > m * centerPointX - m * bpCoords[0] + bpCoords[1]) {
                             if (centerPointY > bp.centerPointY) {
                                 dx = dx;
                                 dy = -dy;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             } else {
                                 dx = -dx;
                                 dy = dy;
+                                x = prevCoords[0];
+                                centerPointX = x + radius;
+                                y = prevCoords[1];
+                                centerPointY = y + radius;
                             }
                         } else {
                             dx = -dx;
                             dy = -dy;
+                            x = prevCoords[0];
+                            centerPointX = x + radius;
+                            y = prevCoords[1];
+                            centerPointY = y + radius;
+
                         }
                     }
                     if (rp.getGoal() != null && bp.getGoal() != null) {
@@ -214,7 +261,8 @@ public class Puck extends RoundEntity implements Runnable {
                     bpPrevCoords[0] = bp.getX();
                     bpPrevCoords[1] = bp.getY();
                 }
-
+                prevCoords[0] = getX();
+                prevCoords[1] = getY();
                 x += dx;
                 centerPointX += dx;
                 y += dy;
@@ -224,6 +272,7 @@ public class Puck extends RoundEntity implements Runnable {
                 goal = false;
                 dy = 5;
             }
+
             try {
                 Thread.sleep(2);
             } catch (InterruptedException e) {
