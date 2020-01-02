@@ -22,6 +22,8 @@ class RedPaddle extends RoundEntity {
      */
     private boolean isWinner;
 
+    public int delay;
+
     /**
      * Create a new Red Paddle
      *
@@ -38,6 +40,7 @@ class RedPaddle extends RoundEntity {
                         128, 128, true));
         isWinner = false;
         this.goal = goal;
+        delay = 0;
     }
 
     /**

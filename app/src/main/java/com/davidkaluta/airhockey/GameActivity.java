@@ -104,16 +104,20 @@ public class GameActivity extends AppCompatActivity {
             case (MotionEvent.ACTION_DOWN):
                 xDown = event.getX();
                 yDown = event.getY();
-                ht.getRP().setX(xDown);
-                ht.getRP().setY(yDown > deviceHeight / 2 ?
-                        yDown : deviceHeight / 2);
+                if(ht.getRP().delay == 0) {
+                    ht.getRP().setX(xDown);
+                    ht.getRP().setY(yDown > deviceHeight / 2 ?
+                            yDown : deviceHeight / 2);
+                }
                 return true;
             case MotionEvent.ACTION_MOVE:
                 float xMove = event.getX();
                 float yMove = event.getY();
-                ht.getRP().setX(xMove);
-                ht.getRP().setY(yMove > deviceHeight / 2 ?
-                        yMove : deviceHeight / 2);
+                if(ht.getRP().delay == 0) {
+                    ht.getRP().setX(xMove);
+                    ht.getRP().setY(yMove > deviceHeight / 2 ?
+                            yMove : deviceHeight / 2);
+                }
                 return true;
             default:
                 return super.onTouchEvent(event);

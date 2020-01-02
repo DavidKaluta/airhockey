@@ -110,6 +110,13 @@ public class Puck extends RoundEntity implements Runnable {
                 RedPaddle rp = ht.getRP();
                 if (rp != null) {
                     if (distanceFrom(rp) <= radius + rp.radius) {
+                        while(distanceFrom(rp) <= radius + rp.radius) {
+                            x -= dx;
+                            centerPointX = x + radius;
+                            y -= dy;
+                            centerPointY = y + radius;
+                        }
+                        rp.delay = 2;
                         float m = dy/dx;
                         float[] rpCoords = {rp.getCenterPointX(), rp.getCenterPointY()};
                         // y - rpCoords[1] = m(x-rpCoords[0])
@@ -118,51 +125,38 @@ public class Puck extends RoundEntity implements Runnable {
                             if(centerPointY > rp.centerPointY) {
                                 dy = dy;
                                 dx = -dx;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             }
                             else {
                                 dy = -dy;
                                 dx = dx;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             }
                         }
                         else if(centerPointY > m*centerPointX  - m*rpCoords[0] + rpCoords[1]) {
                             if(centerPointY > rp.centerPointY) {
                                 dx = dx;
                                 dy = -dy;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             }
                             else {
                                 dx = -dx;
                                 dy = dy;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             }
                         }
                         else {
                             dx = -dx;
                             dy = -dy;
-                            x = prevCoords[0];
-                            centerPointX = x + radius;
-                            y = prevCoords[1];
-                            centerPointY = y + radius;
                         }
                     }
                 }
                 BluePaddle bp = ht.getBP();
                 if (bp != null) {
                     if (distanceFrom(bp) <= radius + bp.radius) {
+                        while(distanceFrom(bp) <= radius + bp.radius) {
+                            x -= dx;
+                            centerPointX = x + radius;
+                            y -= dy;
+                            centerPointY = y + radius;
+                        }
+                        bp.delay = 2;
                         float m = dy / dx;
                         float[] bpCoords = {bp.getCenterPointX(), bp.getCenterPointY()};
                         // y - rpCoords[1] = m(x-rpCoords[0])
@@ -171,41 +165,21 @@ public class Puck extends RoundEntity implements Runnable {
                             if (centerPointY > bp.centerPointY) {
                                 dy = dy;
                                 dx = -dx;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             } else {
                                 dy = -dy;
                                 dx = dx;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             }
                         } else if (centerPointY > m * centerPointX - m * bpCoords[0] + bpCoords[1]) {
                             if (centerPointY > bp.centerPointY) {
                                 dx = dx;
                                 dy = -dy;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             } else {
                                 dx = -dx;
                                 dy = dy;
-                                x = prevCoords[0];
-                                centerPointX = x + radius;
-                                y = prevCoords[1];
-                                centerPointY = y + radius;
                             }
                         } else {
                             dx = -dx;
                             dy = -dy;
-                            x = prevCoords[0];
-                            centerPointX = x + radius;
-                            y = prevCoords[1];
-                            centerPointY = y + radius;
 
                         }
                     }
@@ -261,12 +235,16 @@ public class Puck extends RoundEntity implements Runnable {
                     bpPrevCoords[0] = bp.getX();
                     bpPrevCoords[1] = bp.getY();
                 }
-                prevCoords[0] = getX();
-                prevCoords[1] = getY();
                 x += dx;
                 centerPointX += dx;
                 y += dy;
                 centerPointY += dy;
+                if(rp != null && bp != null) {
+                    if (rp.delay != 0)
+                        rp.delay--;
+                    if (bp.delay != 0)
+                        bp.delay--;
+                }
             }
             else if (TimeHelper.seconds - 3 == ht.pauseTime) {
                 goal = false;

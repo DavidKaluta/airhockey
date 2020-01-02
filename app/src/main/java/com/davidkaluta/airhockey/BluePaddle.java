@@ -33,6 +33,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
      * The paddle's velocity (controlled by difficulty)
      */
     private double v;
+
+    public int delay;
     
     /**
      * The preferred Y coordinate for the blue paddle
@@ -59,6 +61,7 @@ public class BluePaddle extends RoundEntity implements Runnable {
         this.ht = ht;
         this.goal = goal;
         isWinner = false;
+        delay = 0;
         Thread thread = new Thread(this, "aiThread");
         thread.start();
     }
@@ -82,26 +85,26 @@ public class BluePaddle extends RoundEntity implements Runnable {
             Puck puck = ht.getP();
             if (puck != null) {
                 if (v != 123) {
-                	if (centerPointY < puck.getCenterPointY()) {
-                    	if (puck.getCenterPointX() > centerPointX &&
-                            	centerPointX + radius < deviceWidth) {
-                        	x += v;
-                        	centerPointX += v;
-                    	} 
-                    	else if (centerPointX - radius > 0) {
-                        	x -= v;
-                        	centerPointX -= v;
-                    	}
-                    	if (starterY > centerPointY) {
-                    		y += v;
-                    		centerPointY += v;
-                    	}
+                    if (delay == 0) {
+                        if (centerPointY < puck.getCenterPointY()) {
+                            if (puck.getCenterPointX() > centerPointX &&
+                                    centerPointX + radius < deviceWidth) {
+                                x += v;
+                                centerPointX += v;
+                            } else if (centerPointX - radius > 0) {
+                                x -= v;
+                                centerPointX -= v;
+                            }
+                            if (starterY > centerPointY) {
+                                y += v;
+                                centerPointY += v;
+                            }
+                        } else if (centerPointY > 0) {
+                            y -= v;
+                            centerPointY -= v;
+                        }
                     }
-                    else if (centerPointY > 0) {
-                    	y -= v;
-                    	centerPointY -= v;
-                    }
-                } 
+                }
                 else {
                     centerPointX = puck.centerPointX;
                     x = centerPointX - radius;
