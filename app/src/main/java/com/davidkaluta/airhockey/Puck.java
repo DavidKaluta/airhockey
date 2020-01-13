@@ -248,7 +248,8 @@ public class Puck extends RoundEntity implements Runnable {
             }
             else if (TimeHelper.seconds - 3 == ht.pauseTime) {
                 goal = false;
-                dy = 5;
+                dy = 2;
+                dx = 2;
             }
 
             try {

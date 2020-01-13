@@ -3,6 +3,7 @@ package com.davidkaluta.airhockey;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import static com.davidkaluta.airhockey.GameActivity.deviceHeight;
 import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
 
 /**
@@ -41,6 +42,8 @@ public class BluePaddle extends RoundEntity implements Runnable {
      */
     private float starterY;
 
+    private boolean hitting;
+
     /**
      * Create a new blue paddle
      *
@@ -61,6 +64,7 @@ public class BluePaddle extends RoundEntity implements Runnable {
         this.ht = ht;
         this.goal = goal;
         isWinner = false;
+        hitting = false;
         delay = 0;
         Thread thread = new Thread(this, "aiThread");
         thread.start();
@@ -102,6 +106,30 @@ public class BluePaddle extends RoundEntity implements Runnable {
                         } else if (centerPointY > 0) {
                             y -= v;
                             centerPointY -= v;
+                        }
+                        float m = (goal.getY() - centerPointY) / (goal.getX() - centerPointX);
+                        // y - centerPointY = m(x - centerPointX)
+                        // y = mx -mCenterPointX + centerPointY
+                        double distance = Math.abs((m * ht.getP().centerPointX - ht.getP().centerPointY + centerPointY - m*centerPointX)/Math.sqrt(m*m+1));
+                        if (distance > 128 && ht.getP().centerPointY < deviceHeight /2) {
+                            hitting = true;
+                        }
+                        else {
+                            hitting = false;
+                        }
+                        float oldCPX = centerPointX;
+                        if(hitting) {
+                            if (m > 0) {
+                                x += v;
+                                centerPointX += v;
+                            }
+                            else {
+                                x -= v;
+                                centerPointX -= v;
+                            }
+                            if (m*centerPointX - m*oldCPX + centerPointY < deviceHeight / 2)
+                                centerPointY = m*centerPointX - m*oldCPX + centerPointY;
+                            y = centerPointY - radius;
                         }
                     }
                 }
