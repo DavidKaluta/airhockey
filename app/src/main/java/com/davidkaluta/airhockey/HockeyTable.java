@@ -88,6 +88,11 @@ public class HockeyTable extends View {
         rp = new RedPaddle(deviceWidth / 2, 7 * deviceHeight / 8,
                 new Goal(deviceWidth / 4, 0, this), this);
         switch (difficulty) {
+            case "2 Players":
+                bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 0,
+                        new Goal(deviceWidth / 4, deviceHeight - 10, this),
+                        this);
+                break;
             case "Easy":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 0.5,
                         new Goal(deviceWidth / 4, deviceHeight - 10, this),

@@ -11,7 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CreditsActivity" />
         <activity android:name=".GameActivity" />
-        <service android:name="com.davidkaluta.airhockey.MusicService"/>
+
+        <service android:name=".MusicService" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,20 +21,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
                     android:host="www.davidkaluta.com"
                     android:pathPrefix="/bricks"
-                    android:scheme="http"/>
+                    android:scheme="http" />
                 <data
                     android:host="bricks"
-                    android:scheme="davidkaluta"/>
+                    android:scheme="davidkaluta" />
             </intent-filter>
-
         </activity>
     </application>
 

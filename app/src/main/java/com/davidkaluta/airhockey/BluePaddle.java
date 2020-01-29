@@ -67,6 +67,7 @@ public class BluePaddle extends RoundEntity implements Runnable {
         hitting = false;
         delay = 0;
         Thread thread = new Thread(this, "aiThread");
+        if (v != 0)
         thread.start();
     }
 
@@ -154,6 +155,10 @@ public class BluePaddle extends RoundEntity implements Runnable {
      */
     boolean isWinner() {
         return isWinner;
+    }
+
+    double getV() {
+        return v;
     }
 
     /**

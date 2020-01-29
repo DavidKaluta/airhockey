@@ -47,6 +47,8 @@ public class GameActivity extends AppCompatActivity {
      */
     float yDown;
 
+    String difficulty;
+
     /**
      * Prepare for opening game
      *
@@ -56,7 +58,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String difficulty = intent.getStringExtra("DIFFICULTY");
+        difficulty = intent.getStringExtra("DIFFICULTY");
         if (difficulty != null)
             ht = new HockeyTable(this, difficulty);
         else
@@ -105,18 +107,28 @@ public class GameActivity extends AppCompatActivity {
                 xDown = event.getX();
                 yDown = event.getY();
                 if(ht.getRP().delay == 0) {
-                    ht.getRP().setX(xDown);
-                    ht.getRP().setY(yDown > deviceHeight / 2 ?
-                            yDown : deviceHeight / 2);
+                    if (yDown > deviceHeight / 2) {
+                        ht.getRP().setY(yDown);
+                        ht.getRP().setX(xDown);
+                    }
+                    else if (ht.getBP().getV() == 0) {
+                        ht.getBP().setY(yDown);
+                        ht.getBP().setX(xDown);
+                    }
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
                 float xMove = event.getX();
                 float yMove = event.getY();
                 if(ht.getRP().delay == 0) {
-                    ht.getRP().setX(xMove);
-                    ht.getRP().setY(yMove > deviceHeight / 2 ?
-                            yMove : deviceHeight / 2);
+                    if(yDown > deviceHeight / 2) {
+                        ht.getRP().setX(xMove);
+                        ht.getRP().setY(yMove);
+                    }
+                    else if (ht.getBP().getV() == 0) {
+                        ht.getBP().setY(yMove);
+                        ht.getBP().setX(xMove);
+                    }
                 }
                 return true;
             default:
