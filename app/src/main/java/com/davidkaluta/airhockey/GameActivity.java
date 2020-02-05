@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MotionEventCompat;
 
 import android.os.Bundle;
 
@@ -37,15 +38,13 @@ public class GameActivity extends AppCompatActivity {
      */
     HockeyTable ht;
 
-    /**
-     * X-coordinate for touch location
-     */
-    float xDown;
+    float xDown1;
 
-    /**
-     * Y-coordinate for touch location
-     */
-    float yDown;
+    float yDown1;
+
+    float xDown2;
+
+    float yDown2;
 
     String difficulty;
 
@@ -103,31 +102,70 @@ public class GameActivity extends AppCompatActivity {
         int action = event.getActionMasked();
 
         switch (action) {
-            case (MotionEvent.ACTION_DOWN):
-                xDown = event.getX();
-                yDown = event.getY();
-                if(ht.getRP().delay == 0) {
-                    if (yDown > deviceHeight / 2) {
-                        ht.getRP().setY(yDown);
-                        ht.getRP().setX(xDown);
+            case MotionEvent.ACTION_DOWN:
+                xDown1 = event.getX();
+                yDown1 = event.getY();
+                if(xDown1 > ht.getRP().x - 16 && xDown1 < ht.getRP().x + ht.getRP().radius + 16) {
+                    if (yDown1 > ht.getRP().y - 16 && yDown1 < ht.getRP().y + ht.getRP().radius + 16) {
+                        ht.getRP().setX(xDown1);
+                        ht.getRP().setY(yDown1);
                     }
-                    else if (ht.getBP().getV() == 0) {
-                        ht.getBP().setY(yDown);
-                        ht.getBP().setX(xDown);
+                }
+                else if (xDown1 > ht.getBP().x - 16 && xDown1 < ht.getBP().x + ht.getBP().radius + 16) {
+                    if (yDown1 > ht.getBP().y - 16 && yDown1 < ht.getBP().y + ht.getBP().radius + 16) {
+                        ht.getBP().setX(xDown1);
+                        ht.getBP().setY(yDown1);
+                    }
+                }
+                return true;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                xDown2 = event.getX(1);
+                yDown2 = event.getY(1);
+                if(xDown2 > ht.getRP().x - 16 && xDown2 < ht.getRP().x + ht.getRP().radius + 16) {
+                    if (yDown2 > ht.getRP().y - 16 && yDown2 < ht.getRP().y + ht.getRP().radius + 16) {
+                        ht.getRP().setX(xDown2);
+                        ht.getRP().setY(yDown2);
+                    }
+                }
+                else if (xDown2 > ht.getBP().x - 16 && xDown2 < ht.getBP().x + ht.getBP().radius + 16) {
+                    if (yDown2 > ht.getBP().y - 16 && yDown2 < ht.getBP().y + ht.getBP().radius + 16) {
+                        ht.getBP().setX(xDown2);
+                        ht.getBP().setY(yDown2);
                     }
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
-                float xMove = event.getX();
-                float yMove = event.getY();
-                if(ht.getRP().delay == 0) {
-                    if(yDown > deviceHeight / 2) {
-                        ht.getRP().setX(xMove);
-                        ht.getRP().setY(yMove);
+                if(event.getPointerCount() == 2) {
+                    for (int i = 0; i < 2; i++) {
+                        float xMove = event.getX(i);
+                        float yMove = event.getY(i);
+                        if (xMove > ht.getRP().x - 16 && xMove < ht.getRP().x + ht.getRP().radius + 16) {
+                            if (yMove > ht.getRP().y - 16 && yMove < ht.getRP().y + ht.getRP().radius + 16) {
+                                ht.getRP().setX(xMove);
+                                ht.getRP().setY(yMove);
+                            }
+                        } else if (xMove > ht.getBP().x - 16 && xMove < ht.getBP().x + ht.getBP().radius + 16) {
+                            if (yMove > ht.getBP().y - 16 && yMove < ht.getBP().y + ht.getBP().radius + 16) {
+                                ht.getBP().setX(xMove);
+                                ht.getBP().setY(yMove);
+                            }
+                        }
                     }
-                    else if (ht.getBP().getV() == 0) {
-                        ht.getBP().setY(yMove);
-                        ht.getBP().setX(xMove);
+                }
+                else {
+                    float xMove = event.getX();
+                    float yMove = event.getY();
+                    if(xMove > ht.getRP().x - 16 && xMove < ht.getRP().x + ht.getRP().radius + 16) {
+                        if (yMove > ht.getRP().y - 16 && yMove < ht.getRP().y + ht.getRP().radius + 16) {
+                            ht.getRP().setX(xMove);
+                            ht.getRP().setY(yMove);
+                        }
+                    }
+                    else if (xMove > ht.getBP().x - 16 && xMove < ht.getBP().x + ht.getBP().radius + 16) {
+                        if (yMove > ht.getBP().y - 16 && yMove < ht.getBP().y + ht.getBP().radius + 16) {
+                            ht.getBP().setX(xMove);
+                            ht.getBP().setY(yMove);
+                        }
                     }
                 }
                 return true;
