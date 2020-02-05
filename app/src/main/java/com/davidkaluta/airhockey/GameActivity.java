@@ -105,14 +105,14 @@ public class GameActivity extends AppCompatActivity {
             case MotionEvent.ACTION_DOWN:
                 xDown1 = event.getX();
                 yDown1 = event.getY();
-                if(xDown1 > ht.getRP().x - 16 && xDown1 < ht.getRP().x + ht.getRP().radius + 16) {
-                    if (yDown1 > ht.getRP().y - 16 && yDown1 < ht.getRP().y + ht.getRP().radius + 16) {
+                if(xDown1 > ht.getRP().x - 64 && xDown1 < ht.getRP().x + ht.getRP().radius + 64) {
+                    if (yDown1 > ht.getRP().y - 64 && yDown1 < ht.getRP().y + ht.getRP().radius + 64) {
                         ht.getRP().setX(xDown1);
                         ht.getRP().setY(yDown1);
                     }
                 }
-                else if (xDown1 > ht.getBP().x - 16 && xDown1 < ht.getBP().x + ht.getBP().radius + 16) {
-                    if (yDown1 > ht.getBP().y - 16 && yDown1 < ht.getBP().y + ht.getBP().radius + 16) {
+                else if (difficulty.equals("2 Players") && xDown1 > ht.getBP().x - 64 && xDown1 < ht.getBP().x + ht.getBP().radius + 64) {
+                    if (yDown1 > ht.getBP().y - 64 && yDown1 < ht.getBP().y + ht.getBP().radius + 64) {
                         ht.getBP().setX(xDown1);
                         ht.getBP().setY(yDown1);
                     }
@@ -121,14 +121,14 @@ public class GameActivity extends AppCompatActivity {
             case MotionEvent.ACTION_POINTER_DOWN:
                 xDown2 = event.getX(1);
                 yDown2 = event.getY(1);
-                if(xDown2 > ht.getRP().x - 16 && xDown2 < ht.getRP().x + ht.getRP().radius + 16) {
-                    if (yDown2 > ht.getRP().y - 16 && yDown2 < ht.getRP().y + ht.getRP().radius + 16) {
+                if(xDown2 > ht.getRP().x - 64 && xDown2 < ht.getRP().x + ht.getRP().radius + 64) {
+                    if (yDown2 > ht.getRP().y - 64 && yDown2 < ht.getRP().y + ht.getRP().radius + 64) {
                         ht.getRP().setX(xDown2);
                         ht.getRP().setY(yDown2);
                     }
                 }
-                else if (xDown2 > ht.getBP().x - 16 && xDown2 < ht.getBP().x + ht.getBP().radius + 16) {
-                    if (yDown2 > ht.getBP().y - 16 && yDown2 < ht.getBP().y + ht.getBP().radius + 16) {
+                else if (difficulty.equals("2 Players") && xDown2 > ht.getBP().x - 64 && xDown2 < ht.getBP().x + ht.getBP().radius + 64) {
+                    if (yDown2 > ht.getBP().y - 64 && yDown2 < ht.getBP().y + ht.getBP().radius + 64) {
                         ht.getBP().setX(xDown2);
                         ht.getBP().setY(yDown2);
                     }
@@ -139,13 +139,13 @@ public class GameActivity extends AppCompatActivity {
                     for (int i = 0; i < 2; i++) {
                         float xMove = event.getX(i);
                         float yMove = event.getY(i);
-                        if (xMove > ht.getRP().x - 16 && xMove < ht.getRP().x + ht.getRP().radius + 16) {
-                            if (yMove > ht.getRP().y - 16 && yMove < ht.getRP().y + ht.getRP().radius + 16) {
+                        if (xMove > ht.getRP().x - 64 && xMove < ht.getRP().x + ht.getRP().radius + 64) {
+                            if (yMove > ht.getRP().y - 64 && yMove < ht.getRP().y + ht.getRP().radius + 64) {
                                 ht.getRP().setX(xMove);
                                 ht.getRP().setY(yMove);
                             }
-                        } else if (xMove > ht.getBP().x - 16 && xMove < ht.getBP().x + ht.getBP().radius + 16) {
-                            if (yMove > ht.getBP().y - 16 && yMove < ht.getBP().y + ht.getBP().radius + 16) {
+                        } else if (xMove > ht.getBP().x - 64 && xMove < ht.getBP().x + ht.getBP().radius + 64) {
+                            if (yMove > ht.getBP().y - 64 && yMove < ht.getBP().y + ht.getBP().radius + 64) {
                                 ht.getBP().setX(xMove);
                                 ht.getBP().setY(yMove);
                             }
@@ -155,14 +155,14 @@ public class GameActivity extends AppCompatActivity {
                 else {
                     float xMove = event.getX();
                     float yMove = event.getY();
-                    if(xMove > ht.getRP().x - 16 && xMove < ht.getRP().x + ht.getRP().radius + 16) {
-                        if (yMove > ht.getRP().y - 16 && yMove < ht.getRP().y + ht.getRP().radius + 16) {
+                    if(xMove > ht.getRP().x - 64 && xMove < ht.getRP().x + ht.getRP().radius + 64) {
+                        if (yMove > ht.getRP().y - 64 && yMove < ht.getRP().y + ht.getRP().radius + 64) {
                             ht.getRP().setX(xMove);
                             ht.getRP().setY(yMove);
                         }
                     }
-                    else if (xMove > ht.getBP().x - 16 && xMove < ht.getBP().x + ht.getBP().radius + 16) {
-                        if (yMove > ht.getBP().y - 16 && yMove < ht.getBP().y + ht.getBP().radius + 16) {
+                    else if (difficulty.equals("2 Players") && xMove > ht.getBP().x - 64 && xMove < ht.getBP().x + ht.getBP().radius + 64) {
+                        if (yMove > ht.getBP().y - 64 && yMove < ht.getBP().y + ht.getBP().radius + 64) {
                             ht.getBP().setX(xMove);
                             ht.getBP().setY(yMove);
                         }
