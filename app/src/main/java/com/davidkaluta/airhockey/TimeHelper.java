@@ -4,18 +4,28 @@ import java.util.TimerTask;
 
 /**
  * A time helper for counting down seconds
+ *
  * @author David Kaluta
  * @version 24
  * @since 24
  */
 public class TimeHelper extends TimerTask {
 
+    /**
+     * The seconds counter for the timer
+     */
     public static int seconds;
 
+    /**
+     * Create a new timer
+     */
     public TimeHelper() {
         TimeHelper.seconds = 0;
     }
 
+    /**
+     * The timer action
+     */
     @Override
     public void run() {
         TimeHelper.seconds++;

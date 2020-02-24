@@ -35,13 +35,19 @@ public class BluePaddle extends RoundEntity implements Runnable {
      */
     private double v;
 
+    /**
+     * Delay for the hitting action
+     */
     public int delay;
-    
+
     /**
      * The preferred Y coordinate for the blue paddle
      */
     private float starterY;
 
+    /**
+     * Is the blue paddle in the middle of a hitting action
+     */
     private boolean hitting;
 
     /**
@@ -68,7 +74,7 @@ public class BluePaddle extends RoundEntity implements Runnable {
         delay = 0;
         Thread thread = new Thread(this, "aiThread");
         if (v != 0)
-        thread.start();
+            thread.start();
     }
 
     /**
@@ -111,38 +117,36 @@ public class BluePaddle extends RoundEntity implements Runnable {
                         float m = (goal.getY() - centerPointY) / (goal.getX() - centerPointX);
                         // y - centerPointY = m(x - centerPointX)
                         // y = mx -mCenterPointX + centerPointY
-                        double distance = Math.abs((m * ht.getP().centerPointX - ht.getP().centerPointY + centerPointY - m*centerPointX)/Math.sqrt(m*m+1));
-                        if (distance > 128 && ht.getP().centerPointY < deviceHeight /2) {
+                        double distance = Math.abs((m * ht.getP().centerPointX -
+                                ht.getP().centerPointY + centerPointY - m * centerPointX)
+                                / Math.sqrt(m * m + 1));
+                        if (distance > 128 && ht.getP().centerPointY < deviceHeight / 2) {
                             hitting = true;
-                        }
-                        else {
+                        } else {
                             hitting = false;
                         }
                         float oldCPX = centerPointX;
-                        if(hitting) {
+                        if (hitting) {
                             if (m > 0) {
                                 x += v;
                                 centerPointX += v;
-                            }
-                            else {
+                            } else {
                                 x -= v;
                                 centerPointX -= v;
                             }
-                            if (m*centerPointX - m*oldCPX + centerPointY < deviceHeight / 2)
-                                centerPointY = m*centerPointX - m*oldCPX + centerPointY;
+                            if (m * centerPointX - m * oldCPX + centerPointY < deviceHeight / 2)
+                                centerPointY = m * centerPointX - m * oldCPX + centerPointY;
                             y = centerPointY - radius;
                         }
                     }
-                }
-                else {
+                } else {
                     centerPointX = puck.centerPointX;
                     x = centerPointX - radius;
                 }
             }
             try {
                 Thread.sleep(2);
-            }
-            catch (InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -157,6 +161,11 @@ public class BluePaddle extends RoundEntity implements Runnable {
         return isWinner;
     }
 
+    /**
+     * Get the blue paddle's speed
+     *
+     * @return the blue paddle's speed
+     */
     double getV() {
         return v;
     }

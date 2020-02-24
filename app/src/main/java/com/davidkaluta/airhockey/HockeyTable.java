@@ -56,8 +56,14 @@ public class HockeyTable extends View {
      */
     Paint paint;
 
+    /**
+     * A timer for pausing
+     */
     Timer timer;
 
+    /**
+     * The time required to pause
+     */
     int pauseTime;
 
     /**
@@ -96,23 +102,23 @@ public class HockeyTable extends View {
             case "Easy":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 0.5,
                         new Goal(deviceWidth / 4, deviceHeight - 10, this),
-                         this);
+                        this);
                 break;
             case "Medium":
             default:
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 1,
                         new Goal(deviceWidth / 4, deviceHeight - 10, this),
-                         this);
+                        this);
                 break;
             case "Hard":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 2,
                         new Goal(deviceWidth / 4, deviceHeight - 10, this),
-                         this);
+                        this);
                 break;
             case "BRUTAL":
                 bp = new BluePaddle(deviceWidth / 2, deviceHeight / 8, 123,
                         new Goal(deviceWidth / 4, deviceHeight - 10, this),
-                         this);
+                        this);
                 break;
         }
         p = new Puck(deviceWidth / 2, deviceHeight / 2, this);
@@ -157,7 +163,7 @@ public class HockeyTable extends View {
     /**
      * Get the puck
      *
-     * @return  the puck
+     * @return the puck
      */
     public Puck getP() {
         return p;
@@ -166,7 +172,7 @@ public class HockeyTable extends View {
     /**
      * Get the blue paddle
      *
-     * @return  the blue paddle
+     * @return the blue paddle
      */
     public BluePaddle getBP() {
         return bp;
