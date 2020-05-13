@@ -21,7 +21,6 @@ public class MusicService extends Service {
     @SuppressWarnings("unused")
     private final String TAG = "MusicService";
 
-    private static final int NOTIFICATION_ID = 1;
     private MediaPlayer mPlayer;
     private int mStartID;
 
