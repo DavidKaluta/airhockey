@@ -24,7 +24,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * The width of the device
      */
-    public static final float deviceWidth = Resources.getSystem()
+   public static final float deviceWidth = Resources.getSystem()
             .getDisplayMetrics().widthPixels;
 
     /**
@@ -120,12 +120,12 @@ public class GameActivity extends AppCompatActivity {
                 if (xDown1 > ht.getRP().x - 64 && xDown1 < ht.getRP().x + ht.getRP().radius + 64) {
                     if (yDown1 > ht.getRP().y - 64 && yDown1 < ht.getRP().y + ht.getRP().radius + 64) {
                         ht.getRP().setX(xDown1);
-                        ht.getRP().setY(yDown1 > deviceHeight / 2 + ht.getRP().radius ? yDown1 : deviceHeight / 2 + ht.getRP().radius);
+                        ht.getRP().setY(Math.max(yDown1, deviceHeight / 2 + ht.getRP().radius));
                     }
                 } else if (difficulty.equals("2 Players") && xDown1 > ht.getBP().x - 64 && xDown1 < ht.getBP().x + ht.getBP().radius + 64) {
                     if (yDown1 > ht.getBP().y - 64 && yDown1 < ht.getBP().y + ht.getBP().radius + 64) {
                         ht.getBP().setX(xDown1);
-                        ht.getBP().setY(yDown1 < deviceHeight / 2 - ht.getRP().radius ? yDown1 : deviceHeight / 2 - ht.getRP().radius);
+                        ht.getBP().setY(Math.min(yDown1, deviceHeight / 2 - ht.getRP().radius));
                     }
                 }
                 return true;
@@ -135,12 +135,12 @@ public class GameActivity extends AppCompatActivity {
                 if (xDown2 > ht.getRP().x - 64 && xDown2 < ht.getRP().x + ht.getRP().radius + 64) {
                     if (yDown2 > ht.getRP().y - 64 && yDown2 < ht.getRP().y + ht.getRP().radius + 64) {
                         ht.getRP().setX(xDown2);
-                        ht.getRP().setY(yDown2 > deviceHeight / 2 + ht.getRP().radius ? yDown2 : deviceHeight / 2 + ht.getRP().radius);
+                        ht.getRP().setY(Math.max(yDown2, deviceHeight / 2 + ht.getRP().radius));
                     }
                 } else if (difficulty.equals("2 Players") && xDown2 > ht.getBP().x - 64 && xDown2 < ht.getBP().x + ht.getBP().radius + 64) {
                     if (yDown2 > ht.getBP().y - 64 && yDown2 < ht.getBP().y + ht.getBP().radius + 64) {
                         ht.getBP().setX(xDown2);
-                        ht.getBP().setY(yDown2 < deviceHeight / 2 - ht.getRP().radius ? yDown2 : deviceHeight / 2 - ht.getRP().radius);
+                        ht.getBP().setY(Math.min(yDown2, deviceHeight / 2 - ht.getRP().radius));
                     }
                 }
                 return true;
@@ -152,12 +152,12 @@ public class GameActivity extends AppCompatActivity {
                         if (xMove > ht.getRP().x - 64 && xMove < ht.getRP().x + ht.getRP().radius + 64) {
                             if (yMove > ht.getRP().y - 64 && yMove < ht.getRP().y + ht.getRP().radius + 64) {
                                 ht.getRP().setX(xMove);
-                                ht.getRP().setY(yMove > deviceHeight / 2 + ht.getRP().radius ? yMove : deviceHeight / 2 + ht.getRP().radius);
+                                ht.getRP().setY(Math.max(yMove, deviceHeight / 2 + ht.getRP().radius));
                             }
                         } else if (xMove > ht.getBP().x - 64 && xMove < ht.getBP().x + ht.getBP().radius + 64) {
                             if (yMove > ht.getBP().y - 64 && yMove < ht.getBP().y + ht.getBP().radius + 64) {
                                 ht.getBP().setX(xMove);
-                                ht.getBP().setY(yMove < deviceHeight / 2 - ht.getRP().radius ? yMove : deviceHeight / 2 - ht.getRP().radius);
+                                ht.getBP().setY(Math.min(yMove, deviceHeight / 2 - ht.getRP().radius));
                             }
                         }
                     }
@@ -167,12 +167,12 @@ public class GameActivity extends AppCompatActivity {
                     if (xMove > ht.getRP().x - 64 && xMove < ht.getRP().x + ht.getRP().radius + 64) {
                         if (yMove > ht.getRP().y - 64 && yMove < ht.getRP().y + ht.getRP().radius + 64) {
                             ht.getRP().setX(xMove);
-                            ht.getRP().setY(yMove > deviceHeight / 2 + ht.getRP().radius ? yMove : deviceHeight / 2 + ht.getRP().radius);
+                            ht.getRP().setY(Math.max(yMove, deviceHeight / 2 + ht.getRP().radius));
                         }
                     } else if (difficulty.equals("2 Players") && xMove > ht.getBP().x - 64 && xMove < ht.getBP().x + ht.getBP().radius + 64) {
                         if (yMove > ht.getBP().y - 64 && yMove < ht.getBP().y + ht.getBP().radius + 64) {
                             ht.getBP().setX(xMove);
-                            ht.getBP().setY(yMove < deviceHeight / 2 - ht.getRP().radius ? yMove : deviceHeight / 2 - ht.getRP().radius);
+                            ht.getBP().setY(Math.min(yMove, deviceHeight / 2 - ht.getRP().radius));
                         }
                     }
                 }

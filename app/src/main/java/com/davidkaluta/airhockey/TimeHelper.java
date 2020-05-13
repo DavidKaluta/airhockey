@@ -14,12 +14,12 @@ public class TimeHelper extends TimerTask {
     /**
      * The seconds counter for the timer
      */
-    public static int seconds;
+    static int seconds;
 
     /**
      * Create a new timer
      */
-    public TimeHelper() {
+    TimeHelper() {
         TimeHelper.seconds = 0;
     }
 
