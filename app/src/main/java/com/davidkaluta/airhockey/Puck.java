@@ -195,6 +195,9 @@ public class Puck extends RoundEntity implements Runnable {
                                 rp.win();
                                 Saver.setWins(ht.getContext(),
                                         Saver.getWins(ht.getContext()) + 1);
+                                Saver.setWins(ht.getContext(),
+                                        Saver.getWins(ht.getContext(), ht.difficulty) + 1,
+                                        ht.difficulty);
                             }
                         } else if (x + radius * 2 > bp.getGoal().x
                                 && x < bp.getGoal().x + deviceWidth / 2

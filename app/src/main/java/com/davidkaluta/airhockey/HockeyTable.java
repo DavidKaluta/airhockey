@@ -67,6 +67,11 @@ public class HockeyTable extends View {
     int pauseTime;
 
     /**
+     * The game's difficulty
+     */
+    String difficulty;
+
+    /**
      * Create a HockeyTable with a difficulty
      *
      * @param context    required for a View
@@ -74,6 +79,7 @@ public class HockeyTable extends View {
      */
     public HockeyTable(Context context, @NonNull String difficulty) {
         super(context);
+        this.difficulty = difficulty;
         paint = new Paint();
         int deviceWidth = Resources.getSystem().getDisplayMetrics()
                 .widthPixels;

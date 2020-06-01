@@ -6,6 +6,10 @@
     <string name="blue_victory">Blue Wins!</string>
     <string name="preferences_file_key">com.davidkaluta.airhockey.PREFERENCES_FILE_KEY</string>
     <string name="victories_key">com.davidkaluta.airhockey.VICTORIES_KEY</string>
+    <string name="victories_key_easy">com.davidkaluta.airhockey.VICTORIES_KEY_EASY</string>
+    <string name="victories_key_medium">com.davidkaluta.airhockey.VICTORIES_KEY_MEDIUM</string>
+    <string name="victories_key_hard">com.davidkaluta.airhockey.VICTORIES_KEY_HARD</string>
+    <string name="victories_key_2players">com.davidkaluta.airhockey.VICTORIES_KEY_2PLAYERS</string>
     <string name="credits_button">Credits</string>
     <string name="goal">GOAL!</string>
     <string name="good_job_champ">(Good job, champ!)</string>
@@ -20,6 +24,10 @@
     <string name="aka">(also known as the X11 license)</string>
     <string name="you_won_a_total_of">you won a total of</string>
     <string name="times_won">%d times!</string>
+    <string name="times_won_easy">%d wins on easy</string>
+    <string name="times_won_medium">%d wins on medium</string>
+    <string name="times_won_hard">%d wins on hard</string>
+    <string name="times_won_2player">%d wins against other players</string>
     <string-array name="difficulties">
         <item>Easy</item>
         <item>Medium</item>
