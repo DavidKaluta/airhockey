@@ -62,7 +62,7 @@ public class Puck extends RoundEntity implements Runnable {
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(ht.getResources(),
                                 R.drawable.puck),
-                        64, 64, true));
+                        (int) ((deviceWidth)*64.0/1080.0), (int) ((deviceWidth)*64.0/1080.0), true));
         Thread thread = new Thread(this, "PuckThread");
         rpPrevCoords = new float[2];
         bpPrevCoords = new float[2];
@@ -188,7 +188,7 @@ public class Puck extends RoundEntity implements Runnable {
                             x = centerPointX - radius;
                             centerPointY = deviceHeight / 2;
                             y = centerPointY - radius;
-                            if (rp.getGoal().getScore() < 10) {
+                            if (rp.getGoal().getScore() < 7) {
                                 goal = true;
                                 ht.pauseTime = TimeHelper.seconds;
                             } else {
@@ -207,7 +207,7 @@ public class Puck extends RoundEntity implements Runnable {
                             x = centerPointX - radius;
                             centerPointY = deviceHeight / 2;
                             y = centerPointY - radius;
-                            if (bp.getGoal().getScore() < 10) {
+                            if (bp.getGoal().getScore() < 7) {
                                 goal = true;
                                 ht.pauseTime = TimeHelper.seconds;
                             } else {

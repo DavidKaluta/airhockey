@@ -64,7 +64,7 @@ public class BluePaddle extends RoundEntity implements Runnable {
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(
                                 ht.getResources(), R.drawable.blue_paddle),
-                        128, 128, true));
+                        (int) ((deviceWidth)*128.0/1080.0), (int) ((deviceWidth)*128.0/1080.0), true));
         this.v = v;
         starterY = y;
         this.ht = ht;

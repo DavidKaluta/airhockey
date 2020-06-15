@@ -3,6 +3,8 @@ package com.davidkaluta.airhockey;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import static com.davidkaluta.airhockey.GameActivity.deviceWidth;
+
 /**
  * A player-controlled red paddle
  *
@@ -37,7 +39,7 @@ class RedPaddle extends RoundEntity {
                 Bitmap.createScaledBitmap(
                         BitmapFactory.decodeResource(
                                 ht.getResources(), R.drawable.red_paddle),
-                        128, 128, true));
+                        (int) ((deviceWidth)*128.0/1080.0), (int) ((deviceWidth)*128.0/1080.0), true));
         isWinner = false;
         this.goal = goal;
         delay = 0;
